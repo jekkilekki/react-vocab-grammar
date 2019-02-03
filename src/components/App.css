@@ -30,3 +30,11 @@
     transform: rotate(360deg);
   }
 }
+
+/* New Styles
+-------------------------------------------------------- */
+.container {
+  margin: 0 auto;
+  padding: 4rem;
+  max-width: 75rem;
+}

@@ -1,0 +1,17 @@
+.new-item-form {
+  max-width: 550px;
+  margin: 0 auto;
+  position: relative;
+  text-align: left;
+}
+
+.add-item {
+  position: absolute;
+  right: 0;
+  margin-top: 1.5rem;
+}
+
+input.input-short {
+  max-width: 300px;
+  display: block;
+}

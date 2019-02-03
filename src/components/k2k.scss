@@ -1,0 +1,975 @@
+.logo-pattern,
+.colors-pattern,
+.gradient-pattern,
+.fonts-pattern,
+.typography-pattern,
+.buttons-pattern,
+.elements-pattern,
+.forms-pattern 
+{
+  // display: none;
+}
+
+/*COLORS *
+-----------------------------------------------*/
+$black: #22292f;
+$white: #ffffff;
+$grey: #8795a1;
+$grey-light: $grey*1.1;
+$grey-lighter: $grey*1.25;
+$grey-lightest: gainsboro;
+$grey-dark: $grey/1.1;
+$grey-darker: #606f7b;
+$gold: #CF8031;
+
+$teal: #00bfa5;
+$teal-dark: #00897b;
+$pink-dark: #e91e63;
+$pink: #ff4081;
+$blue: #00b0ff;
+$blue-dark: #0277bd;
+$purple: #e040fb;
+$purple-dark: #9c27b0;
+$amber: #ffab00;
+$amber-dark: #ff8f00;
+
+.colors {
+  padding: 0;
+  
+  li {
+    list-style: none;
+  }
+}
+
+.colors li {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  margin-bottom: 1em;
+  margin-right: 1em;
+  padding-top: 1.5em;
+  border-radius: 500px;
+  vertical-align: middle;
+  position: relative;
+  border: 5px solid white;
+  box-shadow: 0 0 1px $grey/2;
+  text-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px;
+  font-weight: 300;
+  line-height: 1.35;
+}
+
+.c-gold {
+  background-color: $gold;
+  color: $white;
+}
+
+.c-black {
+  background-color: $black;
+  color: $white;
+}
+
+.c-white {
+  background-color: $white;
+  color: $black;
+}
+
+.c-grey-dark {
+  background-color: $grey-dark;
+  color: $white;
+}
+
+.c-grey {
+  background-color: $grey;
+  color: $white;
+}
+
+.c-grey-light {
+  background-color: $grey-light;
+  color: $white;
+}
+
+.c-grey-lighter {
+  background-color: $grey-lighter;
+  color: $white;
+}
+
+.c-teal {
+  background-color: $teal;
+  color: $white;
+}
+
+.c-teal-dark {
+  background-color: $teal-dark;
+  color: $white;
+}
+
+.c-pink {
+  background-color: $pink;
+  color: $white;
+}
+
+.c-pink-dark {
+  background-color: $pink-dark;
+  color: $white;
+}
+
+.c-blue {
+  background-color: $blue;
+  color: $white;
+}
+
+.c-blue-dark {
+  background-color: $blue-dark;
+  color: $white;
+}
+
+.c-purple {
+  background-color: $purple;
+  color: $white;
+}
+
+.c-purple-dark {
+  background-color: $purple-dark;
+  color: $white;
+}
+
+.c-amber {
+  background-color: $amber;
+  color: $white;
+}
+
+.c-amber-dark {
+  background-color: $amber-dark;
+  color: $white;
+}
+
+/*GLOBAL *
+-----------------------------------------------*/
+@mixin transition {
+  transition: all ease-out 300ms;	
+}
+
+.logo {
+  max-height: 120px;
+}
+
+h1.page-title {
+  font-size: 2.75em;
+  
+  small {
+    font-size: .5em;
+    font-weight: normal;
+    color: $grey;
+  }
+}
+
+.pattern {
+  margin-bottom: 2em;
+  position: relative;
+}
+
+.pattern-head,
+h6.special {
+  margin: 2em 0;
+  font-family: "Open Sans", "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+  font-size: 70%;
+  font-weight: normal;
+  padding: 1rem 0 0.35rem;
+  color: $grey;
+  border-bottom: 1px solid $grey-lighter;
+}
+
+/*LAYOUT *
+-----------------------------------------------*/
+* {
+  box-sizing: border-box;
+  line-height: 1.75;
+  letter-spacing: 0.01rem;
+}
+.wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/*SKILLS GRADIENTS *
+-----------------------------------------------*/
+.skill-card-grid {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; 
+  grid-gap: 0.5rem;
+}
+
+.skill-card {
+  text-align: center;
+  color: $white;
+  border-radius: 10px;
+  padding: 2rem 1rem;
+}
+
+.skill-card h4, 
+.skill-card p,
+.skill-card a {
+  color: $white;
+  font-weight: 300;
+}
+
+.skill-card-thumbnail {
+  max-height: 100px;
+}
+
+.skill-card-meta-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.skill-card-meta span {
+  display: block;
+  font-weight: 100;
+}
+
+.skill-card-small {
+  font-size: 0.6rem;
+  margin-top: 1rem;
+}
+
+.skill-card.teal {
+  background-image: -webkit-gradient(linear,left top,left bottom,from($teal),to($teal-dark));
+    background-image: linear-gradient(180deg,$teal,$teal-dark);
+}
+
+.skill-card.pink {
+  background-image: -webkit-gradient(linear,left top,left bottom,from($pink),to($pink-dark));
+    background-image: linear-gradient(180deg,$pink,$pink-dark);
+}
+
+.skill-card.blue {
+  background-image: -webkit-gradient(linear,left top,left bottom,from($blue),to($blue-dark));
+    background-image: linear-gradient(180deg,$blue,$blue-dark);
+}
+
+.skill-card.purple {
+  background-image: -webkit-gradient(linear,left top,left bottom,from($purple),to($purple-dark));
+    background-image: linear-gradient(180deg,$purple,$purple-dark);
+}
+
+.skill-card.amber {
+  background-image: -webkit-gradient(linear,left top,left bottom,from($amber),to($amber-dark));
+    background-image: linear-gradient(180deg,$amber,$amber-dark);
+}
+
+.skill-card.grey {
+  background-image: -webkit-gradient(linear,left top,left bottom,from($grey-lighter),to($grey));
+    background-image: linear-gradient(180deg,$grey-lighter,$grey);
+}
+
+/*FONTS *
+-----------------------------------------------*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700);
+@import url(https://fonts.googleapis.com/css?family=Satisfy);
+
+@mixin sans {
+  font-family: 'Noto Sans KR', 'Open Sans', "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+}
+
+@mixin serif {
+  font-family: 'Noto Serif KR', 'Roboto Slab', Georgia, Times, "Times New Roman", serif;
+}
+
+@mixin script {
+  font-family: 'Satisfy', cursive;
+}
+
+body {
+  @include sans;
+}
+
+/*TYPOGRAPHY *
+-----------------------------------------------*/
+body {
+  color: $grey-darker;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  letter-spacing: 0.01rem;
+}
+
+p {
+  margin: 0 0 1rem 0;
+}
+
+.big {
+  font-size: 1.25rem;
+}
+
+span.small {
+  font-size: 0.7rem;
+}
+
+@mixin muted {
+  color: $grey-lighter;
+}
+
+.meta {
+  font-size: 80%;
+  @include muted;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.35;
+  font-weight: 400;
+  color: $black;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.875rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.125rem; }
+h5, .small-caps { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+h6 { font-size: 0.75rem; font-weight: 700; }
+// h6.special { color: $grey-darker; font-weight: 400; font-size: 0.7rem; border-bottom: 1px solid $grey-lighter; padding-bottom: 0.5rem; }
+
+blockquote {
+  color: $grey-dark;
+  font-weight: 100;
+  border-left: 5px solid rgba(135,149,161,0.2);
+  margin-left: 0;
+  padding: 1rem 1.5rem 0.5rem;
+  background: rgba(135,149,161,0.04);
+}
+
+cite {
+  color: $black;
+  font-weight: 300;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  padding: 0.75rem;
+  border-bottom: 1px solid rgba(135,149,161,0.2);
+}
+
+th {
+  border-top: 1px solid rgba(135,149,161,0.2);
+  border-bottom: 2px solid rgba(135,149,161,0.2);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+dt, th {
+  color: $black;
+  font-weight: 500;
+}
+
+dd {
+  margin-left: 1.5rem;
+  color: $grey;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+// ol { list-style-type: korean-hanja-informal; }
+// ol { list-style-type: korean-hangul-formal; }
+ol ol { list-style-type: lower-alpha; }
+ol ol ol { list-style-type: lower-roman; }
+
+address {
+  color: $grey;
+  font-size: 80%;
+  margin-bottom: 1rem;
+}
+
+code, tt, kbd {
+  background: rgba(135,149,161,0.1);
+  border: 1px solid rgba(135,149,161,0.2);
+  padding: 2px 4px;
+}
+
+kbd, tt {
+  border: none;
+}
+
+var {
+  color: $black;
+}
+
+pre {
+  background: rgba(135,149,161,0.1);
+  border: 1px solid rgba(135,149,161,0.2);
+  padding: 0.5rem 1rem;
+}
+
+abbr, acronym {
+  cursor: help;
+  color: $black;
+}
+
+acronym {
+  text-transform: uppercase;
+  font-size: 80%;
+  font-weight: 500;
+}
+
+ins {
+  background: rgba(255,171,0,0.2);
+}
+
+/*BUTTONS *
+-----------------------------------------------*/
+
+a {
+  color: $teal-dark;
+  text-decoration: none;
+  outline: 0;
+}
+
+a:hover,
+a:focus,
+a:active {
+  border-bottom: 2px solid $teal;
+}
+
+@mixin btn {
+    display: inline-block;
+    background: $white;
+    color: $black;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0.75rem 1.35rem 0.75rem 1.35rem;
+    border: 1px solid $grey-lighter;
+    text-align: center;
+    @include transition;
+    border-radius: 50px;
+    cursor: pointer;
+    //box-shadow: 0 3px 0 $blue/1.2;
+    
+    &:hover, 
+    &:focus {
+      color: $teal;
+      border: 1px solid $teal;
+    }
+}
+
+.btn,
+button {
+  @include btn;
+}
+
+.btn.alt {
+  background: $teal;
+  border-color: $teal;
+  color: white;
+  
+  &:hover, 
+  &:focus {
+    background: $teal-dark;
+    border-color: $teal-dark;
+  }
+}
+
+.btn.pink {
+  background: $pink;
+  border-color: $pink;
+  color: white;
+  
+  &:hover, 
+  &:focus {
+    background: $pink-dark;
+    border-color: $pink-dark;
+  }
+}
+
+.btn.amber {
+  background: $amber;
+  border-color: $amber;
+  color: white;
+  
+  &:hover, 
+  &:focus {
+    background: $amber-dark;
+    border-color: $amber-dark;
+  }
+}
+
+.btn.blue {
+  background: $blue;
+  border-color: $blue;
+  color: white;
+  
+  &:hover, 
+  &:focus {
+    background: $blue-dark;
+    border-color: $blue-dark;
+  }
+}
+
+.btn.purple {
+  background: $purple;
+  border-color: $purple;
+  color: white;
+  
+  &:hover, 
+  &:focus {
+    background: $purple-dark;
+    border-color: $purple-dark;
+  }
+}
+
+.btn.grey {
+  background: $grey-lighter;
+  border-color: $grey-lighter;
+  color: white;
+  
+  &:hover, 
+  &:focus {
+    background: $grey;
+    border-color: $grey;
+  }
+}
+
+.btn-border {
+  background: none;
+  border: 1px solid $teal;
+  color: $teal;
+  
+  &:hover {
+    background: $teal;
+    border-color: $teal;
+    color: $white;
+  }
+}
+
+.btn-big {
+  font-size: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.btn-small {
+  font-size: .6rem;
+}
+
+.btn.disabled {
+  background: rgba(135,149,161,0.2);
+  border-color: transparent;
+  color: $grey-lighter;
+  cursor: not-allowed;
+}
+
+input.btn,
+input[type="submit"]{
+  background: $teal;
+  border-color: $teal;
+  color: $white;
+  
+  &:hover,
+  &:focus,
+  &:active {
+    background: $teal-dark;
+    border-color: $teal-dark;
+    color: white;
+  }
+}
+
+/*ELEMENTS *
+-----------------------------------------------*/
+@mixin border-radius {
+  border-radius: 6px;
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid $grey-lighter;
+  max-width: 70%;
+}
+
+hr.big {
+  border: none;
+  border-bottom: 3px solid $grey-lighter;
+  max-width: 100%;
+}
+
+/*FORMS *
+-----------------------------------------------*/
+form {
+  margin-bottom: 1rem;
+  @include border-radius;
+  // max-width: 400px;
+  //margin: 0 auto;
+  
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    list-style: none;
+  }
+}
+
+.field-wrapper {
+  display: block;
+  position:relative;
+  margin-bottom: 0.25em;
+  max-width: 400px;
+}
+
+::-webkit-input-placeholder {
+   color: $grey-lighter; 
+  font-weight: 100;
+}
+
+.form-option-boxes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(20%, 1fr));
+  grid-gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.form-option-box {
+  border-radius: 0.5rem;
+  border: 2px solid #f5f5f5;
+  text-align: center;
+   box-shadow: 0 6px 15px 0 rgba(36,37,38,.08);
+  padding: 2rem 0.5rem;
+  position: relative;
+  
+  &:hover {
+    border-color: $grey-lighter;
+    cursor: pointer;
+  }
+}
+
+.form-option-box.is-selected {
+  border-color: $teal;
+}
+
+.check-wrap {
+  background: $teal;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  color: $white;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.form-option-note {
+  font-size: 0.6rem;
+  margin-top: -0.5rem;
+  display: inline-block;
+  color: $grey-lighter;
+}
+
+.form-option-price {
+  color: $teal;
+  font-size: 2.5rem;
+  margin: 0;
+  
+  & span {
+    font-size: 1.25rem;
+  }
+}
+
+.form-group {
+  padding: 1rem 0;
+
+  & label {
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  &.radio .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 0rem 1rem;
+  }
+}
+
+label.float-label {
+    position:absolute;
+    top:5px;
+    left:0;
+    font-size: 0.7rem;
+    color: $grey;
+    @include transition;
+    opacity:0;
+    font-weight:bold;
+}
+
+label.float-label.on {
+  	color: $grey-dark;
+}
+
+label.float-label.show {
+    top: 0px;
+    opacity: 1;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="file"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input, .faux-file {
+  display: inline-block;
+  // padding: 0.35rem .75rem 0.35rem @include 75em;
+  // padding: @include 5em;
+  font-size: 1rem;
+  vertical-align: middle;
+  min-width: 50px;
+  max-width: 550px;
+  @include transition;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="file"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input, .faux-file {
+  width: 100%;
+  // min-height: 36px;
+  border: 1px solid rgba(135,149,161,0.4);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin: 1rem 0 1rem 0;
+  padding: 0.35rem 0;
+  letter-spacing: 0.05rem;
+  
+   &:hover {
+    border-color: $grey-dark;
+  }
+
+  &:focus {
+    border-color: $teal;
+    border-width: 2px;
+    outline: none;
+  }
+}
+
+input, 
+textarea {
+  -webkit-appearance:none;
+  cursor: pointer;
+  padding: 0.75rem;
+  display: block;
+}
+
+textarea{
+  	height: 150px;
+    @include border-radius;
+    border: 1px solid rgba(135,149,161,0.4);
+  
+  &:focus {
+    border-width: 1px;
+  }
+}
+
+input[type=submit] {
+    @include btn;
+    // border: none;
+  background: $teal;
+  color: $white;
+  border-color: $teal;
+  padding-left: 3rem;
+  padding-right: 3rem;
+    cursor: pointer;
+}
+
+/*RADIO/CHECKBOX*/
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+  color: $black;   
+  font-size: 1em;
+  cursor: pointer;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  position:absolute;
+  opacity:0;
+  cursor: pointer;
+  @include transition;
+
+  &:hover, &:focus, &:hover + label, &:focus + label {
+    border-color: $teal;
+    color: $grey;
+  }
+
+  &:checked + label {
+    color: black;
+    position:relative;
+  }
+}
+
+input[type="radio"] + label::before {
+  content: '';
+  width: 1em;
+  height: 1em;
+  margin-right: 0.25em;
+  position: relative;
+  top: 0.2rem;
+  display: inline-block;
+  background-color: transparent;
+  border-radius: 2em;
+  border: 1px solid $grey;
+}
+
+input[type="checkbox"] + label::before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  margin-right: 0.125em;
+  position: relative;
+  top: 0.2em;
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid $grey;
+  border-radius: 5px;
+}
+
+input[type="checkbox"]:checked + label::after {
+  content: '✔';
+  	display: block;
+  	position: absolute;
+  	top: 0;
+  	left: 4px;
+  	width: 10px;
+  	height: 10px;
+  	color: $teal;
+}
+
+input[type="radio"]:checked + label::before {
+  border-color: $grey;
+}
+
+input[type="radio"]:checked + label::after {
+  content: '';
+  width: 11px;
+  height: 11px;
+  position: absolute;
+  top: 7px;
+  left: 3px;
+  display: inline-block;
+  background-color: $teal;
+  border-radius: 2em;
+}
+
+/*NAVIGATION *
+-----------------------------------------------*/
+nav {
+  background-image: linear-gradient(90deg,$grey-lighter, $grey);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  // border-top: 15px solid $teal;
+  // border-bottom: 30px solid $teal;
+}
+
+.nav-list {
+  list-style: none;
+}
+
+.nav-list li {
+  display: inline;
+}
+
+.nav-list li a {
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  // letter-spacing: 0.5px;
+  padding: 0 1rem 1.5rem;
+  position: relative;
+}
+
+.nav-list li a.active {
+  color: $white;
+  font-weight: bold;
+}
+
+.nav-list li a:hover,
+.nav-list li a:focus,
+.nav-list li a:active {
+  border: none; 
+  color: $white;
+}
+
+.nav-list li a.active:after,
+.nav-list li a:active:after,
+.nav-list li a:hover:after,
+.nav-list li a:focus:after {
+    content: "";
+    width: 90px;
+    display: block;
+    border-bottom: 5px solid #fff;
+    position: absolute;
+    bottom: -2px;
+    left: calc(50% - 45px);
+    border-radius: 9999px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/*PAGINATION *
+-----------------------------------------------*/
+ul.page-numbers {
+  margin: 0;
+  padding: 0;
+}
+
+.pagination .page-numbers li {
+  display: inline-block;
+  width: 42px;
+  height: 40px;
+}
+
+.pagination a, 
+.pagination span {
+  color: $black;
+  background: transparent;
+  border: 1px solid rgba(135,149,161,0.4);
+  display: inline-block;
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 24px;
+  line-height: 1.5;
+}
+
+.pagination span.current, 
+.pagination .active_page {
+  background: $teal;
+  border-color: $teal;
+  font-weight: bold;
+  color: $white;
+}
+
+.pagination a:hover, 
+.page_navigation a:hover {
+  background: $grey-lighter;
+  color: $white;
+}
+
+/*BACKGROUNDS *
+-----------------------------------------------*/
+[class*='bg-'] {
+  padding: 2em;
+}
+
+.bg-pink {
+  background: $pink;
+  color: $white;
+}
+
+.bg-black {
+  background: $black;
+  color: $white;
+}
+
+.bg-grey {
+  background: $grey-light;
+}
