@@ -1,7 +1,7 @@
 import React from 'react'
-import './form.css'
-import FormRadioBtns from './FormRadioBtns'
-import FormAddFields from './FormAddFields'
+import '../shared/form.css'
+import FormRadioBtns from '../shared/FormRadioBtns'
+import FormAddFields from '../shared/FormAddFields'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
