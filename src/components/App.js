@@ -22,13 +22,40 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 library.add( faPlusCircle )
 
 class App extends Component {
+  goTo(route) {
+    this.props.history.replace(`/${route}`)
+  }
+
+  login() {
+    this.props.auth.login()
+  }
+
+  logout() {
+    this.props.auth.logout()
+  }
+
+  componentDidMount() {
+    const { renewSession } = this.props.auth
+
+    if ( localStorage.getItem('k2kLoggedIn') === 'true' ) {
+      renewSession()
+    }
+  }
+
   render() {
+    const { isAuthenticated } = this.props.auth
+
     return (
       <BrowserRouter>
         <main className="App">
           <Header />
           <Switch>
-            <Route exact path='/' render={() => <LoginScreen pageTitle='Login' /> } />
+            { !isAuthenticated &&
+              <Route exact path='/' render={() => <LoginScreen pageTitle='Login' /> } />
+            }
+            { isAuthenticated && 
+              <Route exact path='/' render={() => <LoginScreen pageTitle='Home' /> } />
+            }
             <Route exact path='/hangul' render={() => <HangulScreen pageTitle='Hangul' /> } />
             <Route exact path='/hangul/:id' render={() => <HangulSingle /> } />
             <Route exact path='/vocab' render={() => <VocabScreen pageTitle='Vocabulary' /> } />
