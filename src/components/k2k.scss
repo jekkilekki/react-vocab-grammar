@@ -716,6 +716,13 @@ label.float-label.show {
     top: 0px;
     opacity: 1;
 }
+.flex-label input.input-short {
+  display: inline-block;
+  margin: 0 1rem 0 0;
+}
+.flex-label button {
+  display: inline-block;
+}
 
 select, textarea, input[type="text"], input[type="password"], input[type="file"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input, .faux-file {
   display: inline-block;

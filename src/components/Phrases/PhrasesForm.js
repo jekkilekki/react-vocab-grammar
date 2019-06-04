@@ -6,11 +6,11 @@ import FormAddImage from '../shared/FormAddImage'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const VocabForm = (props) => {
+const PhrasesForm = () => {
   return (  
     <form className="new-item-form">
       <FormAddImage />
-      
+
       <label htmlFor="koreanWord" className="float-label">Korean word</label>
       <input type="text" id="koreanWord" className="input-short" placeholder="Korean word" />
       
@@ -32,9 +32,9 @@ const VocabForm = (props) => {
       <label htmlFor="sentence" className="float-label">Example Sentence</label>
       <FormAddFields title="sentence" />
 
-      <input type="submit" value="Add word" />
+      <input type="submit" value="Add phrase" />
     </form>
   )
 }
  
-export default VocabForm
+export default PhrasesForm

@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 import './App.css'
 import './k2k.scss'
 import Header from './shared/Header'
 import LoginScreen from './Login/LoginScreen'
-import HangulScreen from './Hangul/HangulScreen'
+import AddScreen from './Screens/AddScreen'
 import HangulSingle from './Hangul/HangulSingle'
-import VocabScreen from './Vocab/VocabScreen'
 import VocabSingle from './Vocab/VocabSingle'
-import GrammarScreen from './Grammar/GrammarScreen'
 import GrammarSingle from './Grammar/GrammarSingle'
-import PhrasesScreen from './Phrases/PhrasesScreen'
 import PhraseSingle from './Phrases/PhraseSingle'
 import Search from './Screens/Search'
 import NotFound from './Screens/NotFound'
+
+import { checkAuthStatus } from '../stateManagement/actions'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -22,47 +22,29 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 library.add( faPlusCircle )
 
 class App extends Component {
-  goTo(route) {
-    this.props.history.replace(`/${route}`)
-  }
-
-  login() {
-    this.props.auth.login()
-  }
-
-  logout() {
-    this.props.auth.logout()
-  }
-
   componentDidMount() {
-    const { renewSession } = this.props.auth
-
-    if ( localStorage.getItem('k2kLoggedIn') === 'true' ) {
-      renewSession()
-    }
+    this.props.checkAuthStatus()
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth
-
     return (
       <BrowserRouter>
         <main className="App">
           <Header />
           <Switch>
-            { !isAuthenticated &&
+            {/* { !isAuthenticated && */}
               <Route exact path='/' render={() => <LoginScreen pageTitle='Login' /> } />
-            }
+            {/* }
             { isAuthenticated && 
               <Route exact path='/' render={() => <LoginScreen pageTitle='Home' /> } />
-            }
-            <Route exact path='/hangul' render={() => <HangulScreen pageTitle='Hangul' /> } />
+            } */}
+            <Route exact path='/hangul' render={() => <AddScreen pageTitle='Hangul' /> } />
             <Route exact path='/hangul/:id' render={() => <HangulSingle /> } />
-            <Route exact path='/vocab' render={() => <VocabScreen pageTitle='Vocabulary' /> } />
+            <Route exact path='/vocab' render={() => <AddScreen pageTitle='Vocabulary' /> } />
             <Route exact path='/vocab/:id' render={() => <VocabSingle /> } />
-            <Route exact path='/grammar' render={() => <GrammarScreen pageTitle='Grammar' /> } />
+            <Route exact path='/grammar' render={() => <AddScreen pageTitle='Grammar' /> } />
             <Route exact path='/grammar/:id' render={() => <GrammarSingle /> } />
-            <Route exact path='/phrases' render={() => <PhrasesScreen pageTitle='Phrases' /> } />
+            <Route exact path='/phrases' render={() => <AddScreen pageTitle='Phrases' /> } />
             <Route exact path='/phrase/:id' render={() => <PhraseSingle /> } />
             <Route exact path='/search' render={(props) => <Search timestamp={new Date().toString()} {...props} /> } />
             <Route path='/search/:query' render={(props) => <Search timestamp={new Date().toString()} query={props.match.params.query} {...props} /> } />
@@ -74,4 +56,8 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = ({ app }) => {
+  return { loggedIn: app.loggedIn }
+}
+
+export default connect(mapStateToProps, { checkAuthStatus })(App)
