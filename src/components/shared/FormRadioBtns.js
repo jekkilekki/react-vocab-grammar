@@ -4,7 +4,7 @@ class FormRadioBtns extends Component {
   constructor( props ) {
     super( props )
     this.state = {
-      selected: "option0"
+      selected: null
     }
   }
 
@@ -18,14 +18,14 @@ class FormRadioBtns extends Component {
     return (
       <div className="form-group radio"> 
         <label htmlFor="classification">{ this.props.title }</label>
-        <div className="options" onChange={this.handleOptionChange}>
+        <div className="options">
         { this.props.data.map(( item, i ) => (
-          <span key={i} className="field-wrapper" onChange={this.handleOptionChange}>
+          <span key={i} className="field-wrapper">
             <input id={"option" + i} name={item} type="radio" className="field radio" value={item} 
               checked={this.state.selected === "option" + i}
               onChange={this.handleOptionChange}
             />
-            <label className="choice" htmlFor={item} >
+            <label className="choice" htmlFor={item}>
               {item}
             </label> 
           </span>

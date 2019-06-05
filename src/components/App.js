@@ -24,6 +24,7 @@ library.add( faPlusCircle )
 class App extends Component {
   componentDidMount() {
     this.props.checkAuthStatus()
+    console.log('Hello')
   }
 
   render() {

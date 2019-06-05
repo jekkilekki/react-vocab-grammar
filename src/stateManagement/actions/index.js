@@ -8,8 +8,8 @@ export const LOGIN_FIELD_UPDATE = 'login_field_update'
 export const SEARCH_FIELD_UPDATE = 'search_field_update'
 export const SEARCH_QUERY = 'search_query'
 
-export const ITEM_SAVE = 'item_save'
-export const ITEM_FIELD_UPDATE = 'item_field_update'
+export const FORM_SAVE = 'form_save'
+export const FORM_FIELD_UPDATE = 'form_field_update'
 
 
 export * from './appActions'

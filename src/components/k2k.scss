@@ -569,6 +569,8 @@ input[type="submit"]{
   background: $teal;
   border-color: $teal;
   color: $white;
+  margin: 0 auto;
+  display: block!important;
   
   &:hover,
   &:focus,
@@ -577,6 +579,11 @@ input[type="submit"]{
     border-color: $teal-dark;
     color: white;
   }
+}
+
+input.btn-big {
+  font-size: 1.2rem!important;
+  padding: 1rem 3rem!important;
 }
 
 /*ELEMENTS *
@@ -619,7 +626,8 @@ form {
   display: block;
   position:relative;
   margin-bottom: 0.25em;
-  max-width: 400px;
+  text-align: left;
+  // max-width: 400px;
 }
 
 ::-webkit-input-placeholder {
@@ -731,7 +739,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="file"]
   font-size: 1rem;
   vertical-align: middle;
   min-width: 50px;
-  max-width: 550px;
+  // max-width: 550px;
   @include transition;
 }
 

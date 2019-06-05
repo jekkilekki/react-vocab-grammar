@@ -32,7 +32,7 @@ const VocabForm = (props) => {
       <label htmlFor="sentence" className="float-label">Example Sentence</label>
       <FormAddFields title="sentence" />
 
-      <input type="submit" value="Add word" />
+      <input className="btn-big" type="submit" value="Add word" />
     </form>
   )
 }
