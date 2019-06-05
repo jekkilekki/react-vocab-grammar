@@ -15,6 +15,11 @@ const FormContainer = styled.form`
   position: relative;
 `
 
+const Error = styled.p`
+  color: red;
+  text-align: left;
+`
+
 class Form extends Component {
   state = {
     loading: false,
@@ -26,6 +31,8 @@ class Form extends Component {
   // }
 
   formSubmit = (e) => {
+    e.preventDefault()
+
     const { formSave, app, formName } = this.props
     const id = generateID()
 
@@ -34,11 +41,15 @@ class Form extends Component {
     delete card.cards
     card.id = id
 
-    e.preventDefault()
-    formSave({ 
-      formId: formName, 
-      card
-    })
+    if ((card.korean !== '' && card.korean !== undefined) || 
+        (card.english !== '' && card.english !== undefined)) {
+      formSave({ 
+        formId: formName, 
+        card
+      })
+    } else {
+      this.setState({ error: 'Saving a card requires Korean or English text.' })
+    }
   }
 
   render() {
@@ -48,6 +59,7 @@ class Form extends Component {
 
     return (
       <FormContainer id={formName} onSubmit={this.formSubmit}>
+        {this.state.error !== '' && <Error>{this.state.error}</Error>}
         {addImage && 
           <FormAddImage
             value={app[formName].imageUrl || ''} 

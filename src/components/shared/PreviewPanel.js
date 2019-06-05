@@ -20,6 +20,7 @@ const Card = styled.div`
   box-shadow: 1px 2px 10px rgba(0,0,0,0.3);
   padding: 10px;
   margin: 0 auto;
+  width: 90%;
   max-width: 200px;
   height: 140px;
 `
@@ -35,23 +36,27 @@ class PreviewPanel extends Component {
 
     return (
       <Panel className='preview-panel'>
-        {app[formName].imageUrl && 
-          <div>
-            <PreviewTitle>Card Front</PreviewTitle>
-            <Card>
+        <div>
+          <PreviewTitle>Card Front</PreviewTitle>
+          <Card>
+            {app[formName].imageUrl && 
               <Image className='preview-image' alt='Preview' src={app[formName].imageUrl} />
-            </Card>
-          </div>
-        }
-        {(app[formName].korean || app[formName].english) &&
-          <div>
-            <PreviewTitle>Card Back</PreviewTitle>
-            <Card>
-              {app[formName].korean && <h2 className='preview-korean'>{app[formName].korean}</h2>}
-              {app[formName].english && <p className='preview-english'>{app[formName].english}</p>}
-            </Card>
-          </div>
-        }
+            }
+          </Card>
+        </div>
+       
+        <div>
+          <PreviewTitle>Card Back</PreviewTitle>
+          <Card>
+            {(app[formName].korean || app[formName].english) &&
+              <Fragment>
+                {app[formName].korean && <h2 className='preview-korean'>{app[formName].korean}</h2>}
+                {app[formName].english && <p className='preview-english'>{app[formName].english}</p>}
+              </Fragment>
+            }
+          </Card>
+        </div>
+
         {app[formName].cards &&
           <PreviewList cards={app[formName].cards} />
         }
