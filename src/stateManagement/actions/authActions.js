@@ -1,8 +1,14 @@
-import { CHECK_AUTH_STATUS, LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './index'
+import { CHECK_AUTH_STATUS, LOAD_APP_DATA, LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './index'
 
 export const checkAuthStatus = () => {
   return async (dispatch) => {
     dispatch({ type: CHECK_AUTH_STATUS })
+    
+    let appData = localStorage.getItem('k2kcards') 
+    if ( appData ) {
+      dispatch({ type: LOAD_APP_DATA, payload: appData })
+    }
+    
     userLoggedIn(dispatch)
   }
 }

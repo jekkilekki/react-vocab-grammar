@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
-import { formFieldUpdate } from '../../stateManagement/actions'
+import { formFieldUpdate, formSave } from '../../stateManagement/actions'
 import { connect } from 'react-redux'
 
 import FormAddFields from './FormAddFields'
 import FormAddImage from './FormAddImage'
 import FormCheckBoxes from './FormCheckBoxes'
 import FormRadioBtns from './FormRadioBtns'
+import { generateID } from '../../utils/helpers'
 
 const FormContainer = styled.form`
   width: 45%;
@@ -20,8 +21,24 @@ class Form extends Component {
     error: '',
   }
 
-  shouldComponentUpdate(nextProps) {
-    return ( this.props.app[this.props.formName] !== nextProps.app[nextProps.formName] )
+  // shouldComponentUpdate(nextProps) {
+  //   return ( this.props.app[this.props.formName] !== nextProps.app[nextProps.formName] )
+  // }
+
+  formSubmit = (e) => {
+    const { formSave, app, formName } = this.props
+    const id = generateID()
+
+    // Clone the Form object held in Redux state so we can manipulate it a bit
+    let card = Object.assign({}, app[formName])
+    delete card.cards
+    card.id = id
+
+    e.preventDefault()
+    formSave({ 
+      formId: formName, 
+      card
+    })
   }
 
   render() {
@@ -30,7 +47,7 @@ class Form extends Component {
     } = this.props
 
     return (
-      <FormContainer id={formName}>
+      <FormContainer id={formName} onSubmit={this.formSubmit}>
         {addImage && 
           <FormAddImage
             value={app[formName].imageUrl || ''} 
@@ -98,7 +115,9 @@ class Form extends Component {
           </Fragment>
         }
 
-        <input className="btn-big" type="submit" value={`Add ${formName}`} />
+        <input className="btn-big" type="submit" 
+          value={`Add ${formName}`} 
+        />
       </FormContainer>
     )
   }
@@ -108,4 +127,4 @@ const mapStateToProps = ({ app }) => {
   return { app }
 }
 
-export default connect(mapStateToProps, { formFieldUpdate })(Form)
+export default connect(mapStateToProps, { formFieldUpdate, formSave })(Form)

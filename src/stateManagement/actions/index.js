@@ -1,3 +1,5 @@
+export const LOAD_APP_DATA = 'load_app_data'
+
 export const CHECK_AUTH_STATUS = 'check_auth_status'
 export const LOGIN = 'login'
 export const LOGIN_SUCCESS = 'login_success'
