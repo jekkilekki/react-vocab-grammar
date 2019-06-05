@@ -20,7 +20,5 @@ export const formSave = ({ formId, card }) => {
       type: FORM_SAVE,
       payload: { formId, card }
     })
-
-    localStorage.setItem('k2kcards', getState().app)
   }
 }
