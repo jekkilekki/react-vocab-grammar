@@ -26,10 +26,6 @@ class Form extends Component {
     error: '',
   }
 
-  // shouldComponentUpdate(nextProps) {
-  //   return ( this.props.app[this.props.formName] !== nextProps.app[nextProps.formName] )
-  // }
-
   formSubmit = (e) => {
     e.preventDefault()
 
@@ -98,7 +94,7 @@ class Form extends Component {
             id="radioBtns"
             data={radioBtns}
             selected={app[formName].radioSelected || null}
-            onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'radioSelected', value: e.target.value }) }
+            onChange={(item) => this.props.formFieldUpdate({ formId: formName, prop: 'radioSelected', value: item }) }
           />
         }
         {checkBoxes &&
@@ -106,7 +102,7 @@ class Form extends Component {
             id="checkBoxes"
             data={checkBoxes}
             checked={app[formName].checkboxesChecked || []}
-            onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'checkboxesChecked', value: e.target.value }) }
+            onChange={(list) => this.props.formFieldUpdate({ formId: formName, prop: 'checkboxesChecked', value: list }) }
           />
         }
         

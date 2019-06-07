@@ -1,4 +1,4 @@
-import { CHECK_AUTH_STATUS, LOAD_APP_DATA, LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './index'
+import { CHECK_AUTH_STATUS, LOGIN_SUCCESS, LOGIN_FAIL } from './index'
 
 export const checkAuthStatus = () => {
   return async (dispatch) => {

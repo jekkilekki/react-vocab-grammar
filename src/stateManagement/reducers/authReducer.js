@@ -1,4 +1,4 @@
-import { CHECK_AUTH_STATUS, LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from '../actions'
+import { CHECK_AUTH_STATUS } from '../actions'
 
 const INITIAL_STATE = {
   email: '',

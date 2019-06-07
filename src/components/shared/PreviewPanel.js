@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 
 import PreviewList from './PreviewList'
+import CardFront from './CardFront'
+import CardBack from './CardBack'
 
 const Panel = styled.div`
   background: rgba(169,186,201,0.5);
@@ -42,25 +44,15 @@ class PreviewPanel extends Component {
     return (
       <Panel className='preview-panel'>
         <CardContainer>
+          
           <div>
             <PreviewTitle>New Card Front</PreviewTitle>
-            <Card>
-              {app[formName].imageUrl && 
-                <Image className='preview-image' alt='Preview' src={app[formName].imageUrl} />
-              }
-            </Card>
+            <CardFront card={app[formName]} noTitle />
           </div>
         
           <div>
             <PreviewTitle>New Card Back</PreviewTitle>
-            <Card>
-              {(app[formName].korean || app[formName].english) &&
-                <Fragment>
-                  {app[formName].korean && <h2 className='preview-korean'>{app[formName].korean}</h2>}
-                  {app[formName].english && <p className='preview-english'>{app[formName].english}</p>}
-                </Fragment>
-              }
-            </Card>
+            <CardBack card={app[formName]} />
           </div>
         </CardContainer>
 
