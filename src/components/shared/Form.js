@@ -7,7 +7,8 @@ import FormAddFields from './FormAddFields'
 import FormAddImage from './FormAddImage'
 import FormCheckBoxes from './FormCheckBoxes'
 import FormRadioBtns from './FormRadioBtns'
-import { generateID } from '../../utils/helpers'
+import FormDropdown from './FormDropdown'
+import { generateID, levelsVocab, levelsGrammar } from '../../utils/helpers'
 
 const FormContainer = styled.form`
   width: 45%;
@@ -50,12 +51,28 @@ class Form extends Component {
 
   render() {
     const {
-      formName, addImage, withPronunciation, radioBtns, checkBoxes, memorizationHint, app
+      formName, levels, addImage, withPronunciation, radioBtns, checkBoxes, memorizationHint, app
     } = this.props
 
     return (
       <FormContainer id={formName} onSubmit={this.formSubmit}>
         {this.state.error !== '' && <Error>{this.state.error}</Error>}
+
+        {levels && 
+          levels === 'vocab' && 
+            <FormDropdown data={levelsVocab} 
+              value={app[formName].level || ''}
+              onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'level', value: e.target.value }) }
+            />
+        }
+        {levels && 
+          levels === 'grammar' && 
+            <FormDropdown data={levelsGrammar} 
+              value={app[formName].level || ''}
+              onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'level', value: e.target.value }) }
+            />
+        }
+
         {addImage && 
           <FormAddImage
             value={app[formName].imageUrl || ''} 
@@ -107,10 +124,14 @@ class Form extends Component {
         }
         
         <label htmlFor="definition" className="float-label">Definition</label>
-        <FormAddFields title="definition(s)" definitions={app[formName].definitions || []} />
+        <FormAddFields title="definition(s)" definitions={app[formName].definitions || []} 
+          onChange={(group) => this.props.formFieldUpdate({ formId: formName, prop: 'definitions', value: group }) }
+        />
 
         <label htmlFor="sentence" className="float-label">Example Sentence</label>
-        <FormAddFields title="sentence(s)" sentences={app[formName].sentences || []} />
+        <FormAddFields title="sentence(s)" sentences={app[formName].sentences || []} 
+          onChange={(group) => this.props.formFieldUpdate({ formId: formName, prop: 'sentences', value: group }) }
+        />
 
         {memorizationHint &&
           <Fragment>

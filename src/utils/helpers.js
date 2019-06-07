@@ -2,6 +2,21 @@ export function generateID() {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
+export const levelsVocab = [
+  { id: 'a', value: 'a', name: 'Beginner' },
+  { id: 'b', value: 'b', name: 'Intermediate' },
+  { id: 'c', value: 'c', name: 'Advanced' }
+]
+
+export const levelsGrammar = [
+  { id: 'a', value: 'a', name: 'True Beginner' },
+  { id: 'b', value: 'b', name: 'Beginner' },
+  { id: 'c', value: 'c', name: 'Low Intermediate' },
+  { id: 'd', value: 'd', name: 'Intermediate' },
+  { id: 'e', value: 'e', name: 'High Intermediate' },
+  { id: 'f', value: 'f', name: 'Advanced' }
+]
+
 /* 
   https://www.koreanclass101.com/forum/viewtopic.php?t=3032 
   https://www.dickgrune.com/NatLang/Korean/Lee_Chul_Young,Korean_Grammar_Textbook,indexed.pdf

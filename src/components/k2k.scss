@@ -622,8 +622,11 @@ form {
   }
 }
 
-.add-item {
+.field-icons {
   position: absolute;
+  width: 40px;
+  display: flex;
+  justify-content: space-between;
   right: 0;
   top: 1.75rem;
 }
