@@ -10,9 +10,6 @@ const Button = styled.button`
 const FormAddImage = (props) => {
   return (
     <div className="form-image-container">
-      {/* {props.image &&
-        <img alt='Preview' src={props.image} />
-      } */}
       <label htmlFor="vocabImage" className="float-label">{props.placeholder}</label>
       <div className="flex-label">
         <input type="text" id="vocabImage" className="input" 

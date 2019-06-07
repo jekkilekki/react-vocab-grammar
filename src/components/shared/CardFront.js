@@ -26,7 +26,7 @@ class CardFront extends Component {
     if ( radioSelected !== undefined ) {
       radio = getPartOfSpeech('radio', radioSelected)
     }
-    if ( checkboxesChecked !== [] ) {
+    if ( checkboxesChecked !== [] && checkboxesChecked !== undefined ) {
       console.log(checkboxesChecked)
       checked = getPartOfSpeech('checkbox', checkboxesChecked)
       console.log(checked)

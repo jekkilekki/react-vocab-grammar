@@ -34,8 +34,11 @@ const ListNumber = styled.p`
   opacity: 0.5;
 `
 
-const ListImage = styled.img`
+const ListImage = styled.div`
   height: 50px;
+  width: 65px;
+  background-position: center;
+  background-size: cover;
   margin-right: 1rem;
 `
 
@@ -79,10 +82,11 @@ class PreviewList extends Component {
           {this.props.cards.map((card, i) => (
             <ListItem key={card.id}>
 
-              <ListNumber>{i})</ListNumber>
+              <ListNumber>{i+1})</ListNumber>
 
               {card.imageUrl && 
-                <ListImage alt={`${card.korean} aka ${card.english}`} src={card.imageUrl} />
+                <ListImage style={{backgroundImage: `url(${card.imageUrl})`}}>
+                </ListImage>
               }
 
               <ListText><strong>{card.korean}</strong>
