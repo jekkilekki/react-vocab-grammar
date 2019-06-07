@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+import { formFieldUpdate } from '../../stateManagement/actions'
 
 import PreviewList from './PreviewList'
 import CardFront from './CardFront'
@@ -57,7 +58,7 @@ class PreviewPanel extends Component {
         </CardContainer>
 
         {app[formName].cards &&
-          <PreviewList cards={app[formName].cards} />
+          <PreviewList cards={app[formName].cards} form={formName} />
         }
       </Panel>
     )
@@ -68,4 +69,4 @@ const mapStateToProps = ({ app }) => {
   return { app }
 }
 
-export default connect(mapStateToProps)(PreviewPanel)
+export default connect(mapStateToProps, { formFieldUpdate })(PreviewPanel)

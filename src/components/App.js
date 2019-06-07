@@ -17,9 +17,9 @@ import { checkAuthStatus } from '../stateManagement/actions'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusCircle, faMinusCircle, faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPlusCircle, faMinusCircle, faPencilAlt, faTrashAlt, faTimes } from '@fortawesome/free-solid-svg-icons'
 
-library.add( faPlusCircle, faMinusCircle, faPencilAlt, faTrashAlt )
+library.add( faPlusCircle, faMinusCircle, faPencilAlt, faTrashAlt, faTimes )
 
 class App extends Component {
   componentDidMount() {

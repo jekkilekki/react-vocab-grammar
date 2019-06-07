@@ -586,6 +586,12 @@ input.btn-big {
   padding: 1rem 3rem!important;
 }
 
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
 /*ELEMENTS *
 -----------------------------------------------*/
 @mixin border-radius {

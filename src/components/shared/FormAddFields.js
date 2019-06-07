@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { connect } from 'react-redux'
 
 import { formFieldUpdate } from '../../stateManagement/actions'
+
+const Button = styled.div`
+  cursor: pointer;
+`
 
 class FormAddFields extends Component {
   state = {
@@ -10,6 +15,17 @@ class FormAddFields extends Component {
     data: [ 
       { id: this.props.title + "0", value: "" }
     ]
+  }
+
+  componentDidMount() {
+    if ( this.props.app.saving ) {
+      this.setState({
+        count: 0,
+        data: [
+          { id: this.props.title + '0', value: '' }
+        ]
+      })
+    }
   }
 
   capitalize = ( str ) => {
@@ -64,6 +80,12 @@ class FormAddFields extends Component {
     // })
   }
 
+  conditionallyRemoveField = (e, id) => {
+    if (e.target.value === '') {
+      this.removeField(id)
+    }
+  }
+
   handleInput = (e) => {
     const { data } = this.state 
     const index = e.target.id.replace( /\D+/g, '' )
@@ -91,13 +113,17 @@ class FormAddFields extends Component {
             className={this.props.title + "-item"}
             placeholder={ this.capitalize( item.id )} 
             // onFocus={this.addField} 
-            // onBlur={() => this.removeField(item.id)} 
+            onBlur={(e) => this.conditionallyRemoveField(e, item.id)} 
             onChange={this.handleInput}
             value={item.value}
           />
           <div className="field-icons">
-            <FontAwesomeIcon className="add-item" icon="plus-circle" onClick={this.addField} />
-            <FontAwesomeIcon className="remove-item" icon="minus-circle" onClick={() => this.removeField( item.id )} />
+            <Button>
+              <FontAwesomeIcon className="add-item" icon="plus-circle" onClick={this.addField} />
+            </Button>
+            <Button>
+              <FontAwesomeIcon className="remove-item" icon="minus-circle" onClick={() => this.removeField( item.id )} />
+            </Button>
           </div>
         </li>
       ))}

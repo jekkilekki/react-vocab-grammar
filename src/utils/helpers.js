@@ -41,15 +41,17 @@ export const grammarPartsOfSpeech = [
 ]
 
 export function getPartOfSpeech( type, data ) {
-  if ( type === 'radio' ) {
-    return vocabPartsOfSpeech.find(item => (
-      item.id === data.split('-')[0]
-    )).korean
-  } else if ( type === 'checkbox' ) {
-    return data.map(item => (
-      grammarPartsOfSpeech.find(i => (
-        i.id === item.split('-')[0]
-      )).abrv
-    ))
+  if ( data !== null ) {
+    if ( type === 'radio' ) {
+      return vocabPartsOfSpeech.find(item => (
+        item.id === data.split('-')[0]
+      )).korean
+    } else if ( type === 'checkbox' ) {
+      return data.map(item => (
+        grammarPartsOfSpeech.find(i => (
+          i.id === item.split('-')[0]
+        )).abrv
+      ))
+    }
   }
 }

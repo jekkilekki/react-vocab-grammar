@@ -1,4 +1,7 @@
-import { SEARCH_QUERY, FORM_FIELD_UPDATE, FORM_SAVE } from './index'
+import { 
+  SEARCH_QUERY, FORM_FIELD_UPDATE, FORM_SAVE, FORM_SAVE_COMPLETE,
+  CARD_DELETE, CARD_EDIT
+} from './index'
 
 export const searchQuery = (query) => {
   return {
@@ -20,5 +23,20 @@ export const formSave = ({ formId, card }) => {
       type: FORM_SAVE,
       payload: { formId, card }
     })
+    dispatch({ type: FORM_SAVE_COMPLETE })
+  }
+}
+
+export const cardDelete = ({ formId, cardId }) => {
+  return {
+    type: CARD_DELETE,
+    payload: { formId, cardId }
+  }
+}
+
+export const cardEdit = ({ formId, cardId }) => {
+  return {
+    type: CARD_EDIT,
+    payload: { formId, cardId }
   }
 }

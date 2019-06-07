@@ -27,10 +27,14 @@ class Form extends Component {
     error: '',
   }
 
+  loadCard = (card) => {
+
+  }
+
   formSubmit = (e) => {
     e.preventDefault()
 
-    const { formSave, app, formName } = this.props
+    const { formSave, app, formName, formFieldUpdate } = this.props
     const id = generateID()
 
     // Clone the Form object held in Redux state so we can manipulate it a bit
@@ -44,6 +48,8 @@ class Form extends Component {
         formId: formName, 
         card
       })
+      formFieldUpdate({ formId: formName, prop: 'sentences', value: [] })
+      formFieldUpdate({ formId: formName, prop: 'definitions', value: [] })
     } else {
       this.setState({ error: 'Saving a card requires Korean or English text.' })
     }
@@ -53,6 +59,8 @@ class Form extends Component {
     const {
       formName, levels, addImage, withPronunciation, radioBtns, checkBoxes, memorizationHint, app
     } = this.props
+
+    console.log(this.props)
 
     return (
       <FormContainer id={formName} onSubmit={this.formSubmit}>
