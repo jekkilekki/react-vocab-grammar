@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Modal from './Modal'
 
 const ListHeader = styled.p`
   text-align: left;
@@ -64,12 +65,12 @@ const ListIcon = styled.div`
 `
 
 class PreviewList extends Component {
-  editItem() {
-
-  }
-
-  deleteItem() {
-    alert('Are you sure you want to delete this item?')
+  openModal( type, card ) {
+    if ( type === 'edit' ) {
+      return <Modal data={card} />
+    } else if ( type === 'delete' ) {
+      return <Modal data={card} />
+    }
   }
 
   render() {
@@ -95,10 +96,10 @@ class PreviewList extends Component {
 
               <ListIcons>
                 <ListIcon>
-                  <FontAwesomeIcon className="edit-item" icon="pencil-alt" onClick={() => this.editItem(card.id)} />
+                  <FontAwesomeIcon className="edit-item" icon="pencil-alt" onClick={() => this.openModal('edit', card)} />
                 </ListIcon>
                 <ListIcon>
-                  <FontAwesomeIcon className="delete-item" icon="trash-alt" onClick={() => this.deleteItem(card.id)} />
+                  <FontAwesomeIcon className="delete-item" icon="trash-alt" onClick={() => this.openModal('delete', card)} />
                 </ListIcon>
               </ListIcons>
             </ListItem>
