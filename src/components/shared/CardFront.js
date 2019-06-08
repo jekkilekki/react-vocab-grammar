@@ -16,6 +16,17 @@ const Card = styled.div`
   width: 95%;
   max-width: 200px;
   height: 140px;
+  position: relative;
+  overflow: hidden;
+`
+
+const Label = styled.p`
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  border-radius: 7px;
 `
 
 class CardFront extends Component {
@@ -37,9 +48,9 @@ class CardFront extends Component {
         {imageUrl && 
           <Image className='preview-image' alt='Preview' src={imageUrl} />
         }
-        {radio !== '' && <p>{radio}</p>}
-        {checked !== [] &&
-          <p>
+        {radioSelected !== undefined && <Label className='btn alt'>{radio}</Label>}
+        {checkboxesChecked !== undefined &&
+          <Label className='btn alt'>
             {checked.map((item, i, arr) => {
               if ( i !== arr.length - 1 ) {
                 return (<span key={i}>{item} / </span>)
@@ -47,7 +58,7 @@ class CardFront extends Component {
                 return (<span key={i}>{item}</span>)
               }
             })}
-          </p>
+          </Label>
         }
       </Card>
     )

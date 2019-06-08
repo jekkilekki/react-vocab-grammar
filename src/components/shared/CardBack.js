@@ -9,11 +9,20 @@ const Card = styled.div`
   width: 95%;
   max-width: 200px;
   height: 140px;
+  overflow: hidden;
+  position: relative;
+`
+
+const Level = styled.small`
+  position: absolute;
+  top: 10px;
+  right: 1rem;
 `
 
 const CardBack = (props) => {
   return (
     <Card>
+      {props.card.level !== undefined && <Level>{props.card.level}</Level>}
       {(props.card.korean || props.card.english) &&
         <Fragment>
           {props.card.korean && <h2 className='preview-korean'>{props.card.korean}</h2>}
