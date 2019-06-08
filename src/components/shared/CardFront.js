@@ -3,8 +3,12 @@ import styled from 'styled-components'
 
 import { getPartOfSpeech } from '../../utils/helpers'
 
-const Image = styled.img`
+const Image = styled.div`
   max-width: 90%;
+  height: 120px;
+  background: transparent;
+  background-size: cover;
+  background-position: center;
   margin: 0 auto;
 `
 
@@ -46,7 +50,9 @@ class CardFront extends Component {
     return (
       <Card>
         {imageUrl && 
-          <Image className='preview-image' alt='Preview' src={imageUrl} />
+          <Image className='preview-image'
+            style={{backgroundImage: `url(${imageUrl})`}} 
+          />
         }
         {radioSelected !== undefined && <Label className='btn alt'>{radio}</Label>}
         {checkboxesChecked !== undefined &&
