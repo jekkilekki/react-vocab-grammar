@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
-import { formFieldUpdate, formSave } from '../../stateManagement/actions'
+import { formError, formFieldUpdate, formSave } from '../../stateManagement/actions'
 import { connect } from 'react-redux'
 
 import FormAddFields from './FormAddFields'
@@ -34,7 +34,7 @@ class Form extends Component {
   formSubmit = (e) => {
     e.preventDefault()
 
-    const { formSave, app, formName, formFieldUpdate } = this.props
+    const { formSave, app, formName, formFieldUpdate, formError } = this.props
     const id = generateID()
 
     // Clone the Form object held in Redux state so we can manipulate it a bit
@@ -51,7 +51,7 @@ class Form extends Component {
       formFieldUpdate({ formId: formName, prop: 'sentences', value: [] })
       formFieldUpdate({ formId: formName, prop: 'definitions', value: [] })
     } else {
-      this.setState({ error: 'Saving a card requires Korean or English text.' })
+      formError('Saving a card requires Korean or English text.')
     }
   }
 
@@ -60,23 +60,21 @@ class Form extends Component {
       formName, levels, addImage, withPronunciation, radioBtns, checkBoxes, memorizationHint, app
     } = this.props
 
-    console.log(this.props)
-
     return (
       <FormContainer id={formName} onSubmit={this.formSubmit}>
-        {this.state.error !== '' && <Error>{this.state.error}</Error>}
+        {app.error !== '' && <Error>{app.error}</Error>}
 
         {levels && 
           levels === 'vocab' && 
             <FormDropdown data={levelsVocab} 
-              value={app[formName].level || ''}
+              value={app[formName].level || 'none'}
               onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'level', value: e.target.value }) }
             />
         }
         {levels && 
           levels === 'grammar' && 
             <FormDropdown data={levelsGrammar} 
-              value={app[formName].level || ''}
+              value={app[formName].level || 'none'}
               onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'level', value: e.target.value }) }
             />
         }
@@ -132,12 +130,16 @@ class Form extends Component {
         }
         
         <label htmlFor="definition" className="float-label">Definition</label>
-        <FormAddFields title="definition(s)" definitions={app[formName].definitions || []} 
+        <FormAddFields title="definition(s)" 
+          data={app[formName].definitions || []} 
+          formName={formName}
           onChange={(group) => this.props.formFieldUpdate({ formId: formName, prop: 'definitions', value: group }) }
         />
 
         <label htmlFor="sentence" className="float-label">Example Sentence</label>
-        <FormAddFields title="sentence(s)" sentences={app[formName].sentences || []} 
+        <FormAddFields title="sentence(s)" 
+          data={app[formName].sentences || []} 
+          formName={formName}
           onChange={(group) => this.props.formFieldUpdate({ formId: formName, prop: 'sentences', value: group }) }
         />
 
@@ -164,4 +166,4 @@ const mapStateToProps = ({ app }) => {
   return { app }
 }
 
-export default connect(mapStateToProps, { formFieldUpdate, formSave })(Form)
+export default connect(mapStateToProps, { formError, formFieldUpdate, formSave })(Form)

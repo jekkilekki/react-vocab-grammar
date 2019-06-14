@@ -19,9 +19,12 @@ const Level = styled.small`
   right: 1rem;
 `
 
-const PreviewEN = styled.small`
+const PreviewTitle = styled.h2`
+  margin-bottom: 0;
+`
+
+const PreviewDefn = styled.small`
   line-height: 1.5;
-  margin-top: -10px;
   display: block;
 `
 
@@ -31,8 +34,8 @@ const CardBack = (props) => {
       {props.card.level !== undefined && <Level>{props.card.level.toUpperCase()}</Level>}
       {(props.card.korean || props.card.english) &&
         <Fragment>
-          {props.card.korean && <h2 className='preview-korean'>{props.card.korean}</h2>}
-          {props.card.english && <PreviewEN className='preview-english'>{props.card.english}</PreviewEN>}
+          {props.card.korean && <PreviewTitle className='preview-korean'>{props.card.korean}</PreviewTitle>}
+          {props.card.english && <PreviewDefn className='preview-english'>{props.card.english}</PreviewDefn>}
         </Fragment>
       }
     </Card>

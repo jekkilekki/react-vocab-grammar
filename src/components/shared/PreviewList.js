@@ -30,6 +30,7 @@ const ListItem = styled.li`
   text-align: left;
   overflow: hidden;
   z-index: 0;
+  min-height: 67px;
 `
 
 const ListNumber = styled.p`

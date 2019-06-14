@@ -13,6 +13,7 @@ export const SEARCH_QUERY = 'search_query'
 export const FORM_SAVE = 'form_save'
 export const FORM_SAVE_COMPLETE = 'form_save_complete'
 export const FORM_FIELD_UPDATE = 'form_field_update'
+export const FORM_ERROR = 'form_error'
 export const CARD_DELETE = 'card_delete'
 export const CARD_EDIT = 'card_edit'
 

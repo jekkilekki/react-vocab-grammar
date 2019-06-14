@@ -1,12 +1,19 @@
 import { 
   SEARCH_QUERY, FORM_FIELD_UPDATE, FORM_SAVE, FORM_SAVE_COMPLETE,
-  CARD_DELETE, CARD_EDIT
+  CARD_DELETE, CARD_EDIT, FORM_ERROR
 } from './index'
 
 export const searchQuery = (query) => {
   return {
     type: SEARCH_QUERY,
     payload: query
+  }
+}
+
+export const formError = (msg) => {
+  return {
+    type: FORM_ERROR,
+    payload: msg
   }
 }
 

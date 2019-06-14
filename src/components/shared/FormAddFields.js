@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { connect } from 'react-redux'
 
 import { formFieldUpdate } from '../../stateManagement/actions'
+import { generateShortId } from '../../utils/helpers'
 
 const Button = styled.div`
   cursor: pointer;
@@ -12,19 +13,14 @@ const Button = styled.div`
 class FormAddFields extends Component {
   state = {
     count: 0,
-    data: [ 
-      { id: this.props.title + "0", value: "" }
-    ]
+    data: this.props.data.length > 0 ? this.props.data : []
   }
 
   componentDidMount() {
-    if ( this.props.app.saving ) {
-      this.setState({
-        count: 0,
-        data: [
-          { id: this.props.title + '0', value: '' }
-        ]
-      })
+    console.log('This data', this.props.data)
+    if ( this.props.data.length < 1 ) {
+      console.log('should add it')
+      this.addField()
     }
   }
 
@@ -34,10 +30,14 @@ class FormAddFields extends Component {
   }
 
   addField = () => {
+    const { formName, title, data } = this.props
+    let niceTitle = title.replace( /\W/g, '' )
+
+    // formFieldUpdate({ formName: formName, prop: niceTitle, value: data.concat({ id: niceTitle + data.length++, value: '' }) })
     this.setState({
       count: this.state.data.length,
       data: [ ...this.state.data, 
-        { id: this.props.title + (this.state.count + 1), value: "" }
+        { key: generateShortId(this.props.title), id: this.props.title.replace(/\W/g, '') + (this.state.count + 1), value: "" }
       ],
     })
   }
@@ -50,7 +50,7 @@ class FormAddFields extends Component {
       })
     } else {
       this.setState({
-        data: [{ id: this.state.data[0].id, value: '' }]
+        data: [{ key: generateShortId(this.props.title), id: this.state.data[0].id, value: '' }]
       })
     }
 
@@ -86,14 +86,15 @@ class FormAddFields extends Component {
     }
   }
 
-  handleInput = (e) => {
+  handleInput = async (e) => {
+    // e.preventDefault()
     const { data } = this.state 
-    const index = e.target.id.replace( /\D+/g, '' )
+    const index = e.target.id.replace( /\D/g, '' )
 
     data[index].value = e.target.value
 
     // update state
-    this.setState({
+    await this.setState({
       data: data,
     })
     this.props.onChange(this.state.data)
@@ -101,16 +102,18 @@ class FormAddFields extends Component {
 
   render() {
     const { app, title } = this.props
+    let niceTitle = title.replace( /\W/g, '' )
 
     return (
-      <ul className={title + "-wrapper"}>
+      <ul className={niceTitle + "-wrapper"}>
       { this.state.data.map(item => (
-        <li key={item.id} className="field-wrapper"> 
+        <li key={item.key} className="field-wrapper"> 
+          {/* <p>{item.key}</p> */}
           <input 
             type="text" 
             ref={c => (this._input = c)}
             id={item.id} 
-            className={this.props.title + "-item"}
+            className={niceTitle + "-item"}
             placeholder={ this.capitalize( item.id )} 
             // onFocus={this.addField} 
             onBlur={(e) => this.conditionallyRemoveField(e, item.id)} 

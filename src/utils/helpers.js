@@ -2,13 +2,19 @@ export function generateID() {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
+export function generateShortId( base = '' ) {
+  return base + Math.random().toString(36).substring(2,5) + Math.random().toString(36).substring(2,5)
+}
+
 export const levelsVocab = [
+  { id: 'none', value: 'none', name: 'Select Level' },
   { id: 'a', value: 'a', name: 'Beginner' },
   { id: 'b', value: 'b', name: 'Intermediate' },
   { id: 'c', value: 'c', name: 'Advanced' }
 ]
 
 export const levelsGrammar = [
+  { id: 'none', value: 'none', name: 'Select Level' },
   { id: 'a', value: 'a', name: 'True Beginner' },
   { id: 'b', value: 'b', name: 'Beginner' },
   { id: 'c', value: 'c', name: 'Low Intermediate' },
