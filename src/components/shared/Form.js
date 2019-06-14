@@ -14,6 +14,7 @@ const FormContainer = styled.form`
   width: 45%;
   margin-right: 5%;
   position: relative;
+  text-align: left;
 `
 
 const Error = styled.p`
@@ -25,10 +26,19 @@ class Form extends Component {
   state = {
     loading: false,
     error: '',
+    level: '',
+    maintainLevel: false
   }
 
   loadCard = (card) => {
 
+  }
+
+  setLevel = (e) => {
+    this.props.formFieldUpdate({ formId: this.props.formName, prop: 'level', value: e.target.value })
+    this.setState({
+      level: e.target.value
+    })
   }
 
   formSubmit = (e) => {
@@ -55,6 +65,40 @@ class Form extends Component {
     }
   }
 
+  renderLevels() {
+    const { levels, app, formName } = this.props
+    let data = []
+
+    if ( levels === 'vocab' ) {
+      data = levelsVocab
+    } else if ( levels === 'grammar' ) {
+      data = levelsGrammar
+    }
+
+    return (
+      <Fragment>
+        <FormDropdown data={data} 
+          value={app[formName].level || ''}
+          onChange={(e) => this.setLevel(e)}
+          selected={this.state.maintainLevel ? this.state.level : ''}
+        />
+        <div className="form-group checkbox inline"> 
+          <div className="options">
+            <span className="field-wrapper">
+              <input id='level-checkbox' name='level-checkbox' type="checkbox" className="field checkbox" value='current' 
+                checked={this.state.maintainLevel}
+                onChange={() => this.setState({ maintainLevel: !this.state.maintainLevel })}
+              />
+              <label className="choice" htmlFor='level-checkbox'>
+                Keep current level
+              </label> 
+            </span>
+          </div>
+        </div> 
+      </Fragment>
+    )
+  }
+
   render() {
     const {
       formName, levels, addImage, withPronunciation, radioBtns, checkBoxes, memorizationHint, app
@@ -66,20 +110,7 @@ class Form extends Component {
       <FormContainer id={formName} onSubmit={this.formSubmit}>
         {this.state.error !== '' && <Error>{this.state.error}</Error>}
 
-        {levels && 
-          levels === 'vocab' && 
-            <FormDropdown data={levelsVocab} 
-              value={app[formName].level || ''}
-              onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'level', value: e.target.value }) }
-            />
-        }
-        {levels && 
-          levels === 'grammar' && 
-            <FormDropdown data={levelsGrammar} 
-              value={app[formName].level || ''}
-              onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'level', value: e.target.value }) }
-            />
-        }
+        {levels && this.renderLevels() }
 
         {addImage && 
           <FormAddImage
