@@ -7,14 +7,14 @@ export function generateShortId( base = '' ) {
 }
 
 export const levelsVocab = [
-  { id: 'none', value: 'none', name: 'Select Level' },
+  { id: 'none', value: '', name: 'Select Level' },
   { id: 'a', value: 'a', name: 'Beginner' },
   { id: 'b', value: 'b', name: 'Intermediate' },
   { id: 'c', value: 'c', name: 'Advanced' }
 ]
 
 export const levelsGrammar = [
-  { id: 'none', value: 'none', name: 'Select Level' },
+  { id: 'none', value: '', name: 'Select Level' },
   { id: 'a', value: 'a', name: 'True Beginner' },
   { id: 'b', value: 'b', name: 'Beginner' },
   { id: 'c', value: 'c', name: 'Low Intermediate' },

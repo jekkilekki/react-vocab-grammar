@@ -18,6 +18,8 @@ $grey: #8795a1;
 $grey-light: $grey*1.1;
 $grey-lighter: $grey*1.25;
 $grey-lightest: gainsboro;
+$grey-bg: #f6f6f6;
+$grey-bg-border: #e5e5e5;
 $grey-dark: $grey/1.1;
 $grey-darker: #606f7b;
 $gold: #CF8031;
@@ -190,6 +192,12 @@ h6.special {
 .wrapper {
   width: 80%;
   margin: 0 auto;
+}
+
+.inline {
+  display: inline-block;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 /*SKILLS GRADIENTS *
@@ -886,6 +894,31 @@ input[type="radio"]:checked + label::after {
   display: inline-block;
   background-color: $teal;
   border-radius: 2em;
+}
+
+.select-wrap {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+}
+select {
+  height: 40px;
+  -webkit-appearance: none;
+  color: $grey;
+  padding-left: 20px;
+  padding-right: 50px;
+  border: 1px solid transparent;
+  border-radius: 50px;
+}
+select:focus {
+  outline: none;
+  border: 1px solid $grey-bg-border;
+}
+.select-icon {
+  opacity: 0.8;
+  position: absolute;
+  top: 12px;
+  right: 20px;
 }
 
 /*NAVIGATION *

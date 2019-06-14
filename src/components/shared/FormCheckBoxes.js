@@ -23,7 +23,7 @@ class FormCheckBoxes extends Component {
               checked={this.props.checked.includes(item.id + '-checkbox')}
               onChange={() => this.handleOptionChange(item.id + '-checkbox')}
             />
-            <label className="choice" htmlFor={item} onClick={() => this.handleOptionChange(item.id + '-checkbox')}>
+            <label className="choice" htmlFor={item.name} onClick={() => this.handleOptionChange(item.id + '-checkbox')}>
               {item.name}
             </label> 
           </span>
