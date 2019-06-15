@@ -6,13 +6,16 @@ import { cardEdit } from '../../stateManagement/actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Modal from './Modal'
 
-const ListHeader = styled.p`
+const ListHeader = styled.div`
   text-align: left;
   margin: 1.5rem 0 -0.5rem;
-  // font-weight: bold;
-  // text-transform: uppercase;
-  font-size: 0.8rem;
-  opacity: 0.8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+const ListButtons = styled.ul`
+  text-align: right!important;
 `
 
 const List = styled.ul`
@@ -99,7 +102,30 @@ class PreviewList extends Component {
     return (
       <Fragment>
         {this.props.cards &&
-          <ListHeader>Created Cards ({this.props.cards.length})</ListHeader>
+          <ListHeader>
+            <small className='no-word-wrap'>Created Cards ({this.props.cards.length})</small>
+            <ListButtons className='inline'>
+              {/* <li><small>List functions:</small></li> */}
+              <li>
+                <button className='btn-small'>
+                  <FontAwesomeIcon icon='save' />
+                  Save
+                </button>
+              </li>
+              <li>
+                <button className='btn-small'>
+                  <FontAwesomeIcon icon='trash-alt' />
+                  Clear
+                </button>
+              </li>
+              <li>
+                <button className='btn alt btn-small'>
+                  <FontAwesomeIcon icon='file-pdf' />
+                  Print
+                </button>
+              </li>
+            </ListButtons>
+          </ListHeader>
         }
         <List>
           {this.props.cards.map((card, i) => (

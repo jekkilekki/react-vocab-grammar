@@ -382,6 +382,22 @@ ul, ol {
   padding-left: 1.5rem;
 }
 
+ul.inline {
+  margin: 0 -5px;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  text-align: left;
+}
+
+ul.inline li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+ul.inline li:first-child { margin-left: 0; }
+ul.inline li:last-child { margin-right: 0; }
+
 // ol { list-style-type: korean-hanja-informal; }
 // ol { list-style-type: korean-hangul-formal; }
 ol ol { list-style-type: lower-alpha; }
@@ -428,6 +444,10 @@ ins {
   background: rgba(255,171,0,0.2);
 }
 
+.no-word-wrap {
+  white-space: nowrap;
+}
+
 /*BUTTONS *
 -----------------------------------------------*/
 
@@ -469,6 +489,11 @@ a:active {
 .btn,
 button {
   @include btn;
+}
+
+button svg {
+  opacity: 0.8;
+  margin-right: 5px;
 }
 
 .btn.alt {
@@ -563,6 +588,7 @@ button {
 
 .btn-small {
   font-size: .6rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
 .btn.disabled {
