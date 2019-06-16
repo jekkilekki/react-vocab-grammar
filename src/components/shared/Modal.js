@@ -47,9 +47,9 @@ const Button = styled.div`
 
 class Modal extends Component {
   deleteCard = (id) => {
-    const { form, cardDelete } = this.props
+    const { formName, cardDelete } = this.props
     cardDelete({ 
-      formId: form, 
+      formId: formName, 
       cardId: id 
     })
     this.props.closeModal()

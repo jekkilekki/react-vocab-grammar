@@ -134,6 +134,17 @@ class Form extends Component {
           />
         }
 
+        {formName.toLowerCase() === 'hangul' && 
+          <Fragment>
+            <label htmlFor="korean-letter" className="float-label">Korean Letter</label>
+            <input type="text" id={`${formName}-korean-letter`} className="input" 
+              value={app[formName].koreanLetter || ''} 
+              placeholder="Korean Letter" 
+              onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'koreanLetter', value: e.target.value }) }
+            />
+          </Fragment>
+        }
+
         <label htmlFor="korean" className="float-label">Korean</label>
         <input type="text" id={`${formName}-korean`} className="input" 
           value={app[formName].korean || ''} 
@@ -175,20 +186,24 @@ class Form extends Component {
             onChange={(list) => this.props.formFieldUpdate({ formId: formName, prop: 'checkboxesChecked', value: list }) }
           />
         }
-        
-        <label htmlFor="definition" className="float-label">Definition</label>
-        <FormAddFields title="definition(s)" 
-          data={app[formName].definitions || []} 
-          formName={formName}
-          onChange={(group) => this.props.formFieldUpdate({ formId: formName, prop: 'definitions', value: group }) }
-        />
 
-        <label htmlFor="sentence" className="float-label">Example Sentence</label>
-        <FormAddFields title="sentence(s)" 
-          data={app[formName].sentences || []} 
-          formName={formName}
-          onChange={(group) => this.props.formFieldUpdate({ formId: formName, prop: 'sentences', value: group }) }
-        />
+        {formName.toLowerCase() !== 'phrases' && formName.toLowerCase() !== 'hangul' &&
+          <Fragment>
+            <label htmlFor="definition" className="float-label">Definition</label>
+            <FormAddFields title="definition(s)" 
+              data={app[formName].definitions || []} 
+              formName={formName}
+              onChange={(group) => this.props.formFieldUpdate({ formId: formName, prop: 'definitions', value: group }) }
+            />
+
+            <label htmlFor="sentence" className="float-label">Example Sentence</label>
+            <FormAddFields title="sentence(s)" 
+              data={app[formName].sentences || []} 
+              formName={formName}
+              onChange={(group) => this.props.formFieldUpdate({ formId: formName, prop: 'sentences', value: group }) }
+            />
+          </Fragment>
+        }
 
         {memorizationHint &&
           <Fragment>

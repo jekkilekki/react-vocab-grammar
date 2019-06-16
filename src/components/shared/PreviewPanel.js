@@ -48,17 +48,17 @@ class PreviewPanel extends Component {
           
           <div>
             <PreviewTitle>New Card Front</PreviewTitle>
-            <CardFront card={app[formName]} noTitle />
+            <CardFront formName={formName} card={app[formName]} noTitle />
           </div>
         
           <div>
             <PreviewTitle>New Card Back</PreviewTitle>
-            <CardBack card={app[formName]} />
+            <CardBack formName={formName} card={app[formName]} />
           </div>
         </CardContainer>
 
         {app[formName].cards &&
-          <PreviewList cards={app[formName].cards} form={formName} />
+          <PreviewList formName={formName} cards={app[formName].cards} />
         }
       </Panel>
     )

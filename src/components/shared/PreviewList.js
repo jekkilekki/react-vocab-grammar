@@ -59,19 +59,26 @@ const ListText = styled.p`
 const ListDefinition = styled.span`
   margin-left: 1rem;
   display: inline-block;
+  position: absolute;
+  white-space: nowrap;
 `
 
 const ListIcons = styled.div`
   position: absolute;
   right: 0;
-  background: #D4DCE4;
-  opacity: 0.5;
+  background: rgb(169,186,201);
+  background: linear-gradient(90deg, rgba(212,220,228,0.5) 0%, rgba(212,220,228,1) 50%);
   z-index: 2;
+  height: 67px;
+  line-height: 67px;
+  width: 40px;
+  text-align: right;
 `
 
 const ListIcon = styled.div`
   display: inline-block;
   margin-left: 10px;
+  color: rgba(96,111,123,0.7);
   cursor: pointer;
 `
 
@@ -156,7 +163,7 @@ class PreviewList extends Component {
             </ListItem>
           ))}
         </List>
-        <Modal form={this.props.form} show={this.state.showModal} type={this.state.modalType} data={this.state.modalContent} closeModal={this.closeModal} />
+        <Modal formName={this.props.formName} show={this.state.showModal} type={this.state.modalType} data={this.state.modalContent} closeModal={this.closeModal} />
       </Fragment>
     )
   }
