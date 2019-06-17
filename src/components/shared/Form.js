@@ -49,6 +49,7 @@ class Form extends Component {
 
     // Clone the Form object held in Redux state so we can manipulate it a bit
     let card = Object.assign({}, app[formName])
+    // Delete the cloned array of cards so we don't re-save the cards inside our cards array
     delete card.cards
     card.id = id
 
@@ -61,7 +62,7 @@ class Form extends Component {
       formFieldUpdate({ formId: formName, prop: 'sentences', value: [] })
       formFieldUpdate({ formId: formName, prop: 'definitions', value: [] })
     } else {
-      formError('Saving a card requires Korean or English text.')
+      formError('Saving a card requires Korean and English text.')
     }
   }
 
@@ -108,28 +109,12 @@ class Form extends Component {
       <FormContainer id={formName} onSubmit={this.formSubmit}>
         {app.error !== '' && <Error>{app.error}</Error>}
 
-{/* <<<<<<< HEAD
-        {levels && 
-          levels === 'vocab' && 
-            <FormDropdown data={levelsVocab} 
-              value={app[formName].level || 'none'}
-              onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'level', value: e.target.value }) }
-            />
-        }
-        {levels && 
-          levels === 'grammar' && 
-            <FormDropdown data={levelsGrammar} 
-              value={app[formName].level || 'none'}
-              onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'level', value: e.target.value }) }
-            />
-        }
-======= */}
         {levels && this.renderLevels() }
 
         {addImage && 
           <FormAddImage
             value={app[formName].imageUrl || ''} 
-            placeholder="Image URL" 
+            placeholder={formName.toLowerCase() === 'hangul' ? 'Stroke order Image URL' : 'Image URL'} 
             onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'imageUrl', value: e.target.value }) }
           />
         }
@@ -187,7 +172,7 @@ class Form extends Component {
           />
         }
 
-        {formName.toLowerCase() !== 'phrases' && formName.toLowerCase() !== 'hangul' &&
+        {formName.toLowerCase() !== 'phrase' && formName.toLowerCase() !== 'hangul' &&
           <Fragment>
             <label htmlFor="definition" className="float-label">Definition</label>
             <FormAddFields title="definition(s)" 
@@ -218,6 +203,7 @@ class Form extends Component {
 
         <input className="btn-big" type="submit" 
           value={`Add ${formName}`} 
+          disabled={!app[formName].korean || !app[formName].english}
         />
       </FormContainer>
     )

@@ -89,7 +89,7 @@ class PreviewList extends Component {
     modalContent: {}
   }
 
-  openModal = async ( type, card ) => {
+  openModal = async ( type, card = '' ) => {
     await this.setState({
       showModal: true,
       modalType: type,
@@ -114,19 +114,19 @@ class PreviewList extends Component {
             <ListButtons className='inline'>
               {/* <li><small>List functions:</small></li> */}
               <li>
-                <button className='btn-small'>
+                <button className='btn-small' disabled={this.props.cards.length < 15}>
                   <FontAwesomeIcon icon='save' />
                   Save
                 </button>
               </li>
               <li>
-                <button className='btn-small'>
+                <button className='btn-small' onClick={() => this.openModal('clear')}>
                   <FontAwesomeIcon icon='trash-alt' />
                   Clear
                 </button>
               </li>
               <li>
-                <button className='btn alt btn-small'>
+                <button className='btn alt btn-small' disabled={this.props.cards.length < 30}>
                   <FontAwesomeIcon icon='file-pdf' />
                   Print
                 </button>

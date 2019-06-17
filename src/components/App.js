@@ -18,12 +18,12 @@ import { checkAuthStatus } from '../stateManagement/actions'
 import { library } from '@fortawesome/fontawesome-svg-core'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
-  faPlusCircle, faMinusCircle, 
+  faHome, faPlusCircle, faMinusCircle, 
   faPencilAlt, faTrashAlt, faFilePdf, faSave, faTimes, 
   faAngleDown 
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add( faPlusCircle, faMinusCircle, faPencilAlt, faTrashAlt, faFilePdf, faSave, faTimes, faAngleDown )
+library.add( faHome, faPlusCircle, faMinusCircle, faPencilAlt, faTrashAlt, faFilePdf, faSave, faTimes, faAngleDown )
 
 class App extends Component {
   componentDidMount() {
@@ -45,12 +45,16 @@ class App extends Component {
             } */}
             <Route exact path='/hangul' render={() => <AddScreen pageTitle='Hangul' /> } />
             <Route exact path='/hangul/:id' render={() => <HangulSingle /> } />
+            <Route exact path='/letters' render={() => <AddScreen pageTitle='Letter' /> } />
+            <Route exact path='/letter/:id' render={() => <HangulSingle /> } />
             <Route exact path='/vocab' render={() => <AddScreen pageTitle='Vocabulary' /> } />
             <Route exact path='/vocab/:id' render={() => <VocabSingle /> } />
             <Route exact path='/grammar' render={() => <AddScreen pageTitle='Grammar' /> } />
             <Route exact path='/grammar/:id' render={() => <GrammarSingle /> } />
             <Route exact path='/phrases' render={() => <AddScreen pageTitle='Phrases' /> } />
             <Route exact path='/phrase/:id' render={() => <PhraseSingle /> } />
+            <Route exact path='/passages' render={() => <AddScreen pageTitle='Passages' /> } />
+            <Route exact path='/passage/:id' render={() => <PhraseSingle /> } />
             <Route exact path='/search' render={(props) => <Search timestamp={new Date().toString()} {...props} /> } />
             <Route path='/search/:query' render={(props) => <Search timestamp={new Date().toString()} query={props.match.params.query} {...props} /> } />
             <Route component={NotFound} />

@@ -599,8 +599,33 @@ button svg {
   cursor: not-allowed;
 }
 
+button:disabled,
+button:disabled:hover,
+button:disabled:focus,
+button:disabled:active {
+  background: rgba(135,149,161,0.2);
+  border-color: transparent;
+  color: $grey-lighter;
+  cursor: not-allowed;
+}
+
+.btn.alt:disabled,
+.btn.alt:disabled:hover,
+.btn.alt:disabled:focus,
+.btn.alt:disabled:active,
+input[type="submit"]:disabled,
+input[type="submit"]:disabled:hover,
+input[type="submit"]:disabled:focus,
+input[type="submit"]:disabled:active {
+  cursor: not-allowed;
+  opacity: 0.6;
+  color: white;
+  background: $teal;
+  border-color: $teal;
+}
+
 input.btn,
-input[type="submit"]{
+input[type="submit"] {
   background: $teal;
   border-color: $teal;
   color: $white;

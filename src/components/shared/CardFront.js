@@ -1,15 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 
 import { getPartOfSpeech } from '../../utils/helpers'
+
+const Hangul = styled.h1`
+  margin-bottom: 0;
+`
 
 const Image = styled.div`
   max-width: 90%;
   height: 120px;
   background: transparent;
-  background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
   margin: 0 auto;
+  z-index: -1;
 `
 
 const Card = styled.div`
@@ -36,7 +41,7 @@ const Label = styled.p`
 class CardFront extends Component {
 
   render() {
-    const { imageUrl, radioSelected, checkboxesChecked } = this.props.card
+    const { koreanLetter, korean, imageUrl, radioSelected, checkboxesChecked } = this.props.card
     let radio = '', checked = []
     if ( radioSelected !== undefined ) {
       radio = getPartOfSpeech('radio', radioSelected)
@@ -51,8 +56,17 @@ class CardFront extends Component {
       <Card>
         {imageUrl && 
           <Image className='preview-image'
-            style={{backgroundImage: `url(${imageUrl})`}} 
+            style={{
+              backgroundImage: `url(${imageUrl})`,
+              backgroundSize: koreanLetter ? 'contain' : 'cover'
+            }} 
           />
+        }
+        {koreanLetter &&
+          <Fragment>
+            <Hangul>{koreanLetter}</Hangul>
+            <small>{korean}</small>
+          </Fragment>
         }
         {radioSelected !== undefined && <Label className='btn alt'>{radio}</Label>}
         {checkboxesChecked !== undefined &&

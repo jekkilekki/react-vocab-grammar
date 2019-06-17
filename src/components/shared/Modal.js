@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { cardDelete, formFieldUpdate } from '../../stateManagement/actions'
+import SingleScreen from '../Screens/SingleScreen'
  
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -55,27 +56,27 @@ class Modal extends Component {
     this.props.closeModal()
   }
 
-  modalDelete() {
-    const { data } = this.props
-    return (
-      <div>
-        <ModalTitle>Delete {data.korean}</ModalTitle>
-        <p>Are you sure you want to delete {data.korean}?</p>
-        <ButtonBox>
-          <Button className='btn alt' onClick={() => this.deleteCard(data.id)}>Delete</Button>
-          &nbsp;
-          <Button className='btn' onClick={this.props.closeModal}>Cancel</Button>
-        </ButtonBox>
-      </div>
-    )
-  }
-
   modalEdit() {
     const { data } = this.props
     return (
       <div>
         <ModalTitle>Editing {data.korean}</ModalTitle>
+        <SingleScreen data={data} />
+      </div>
+    )
+  }
 
+  modalDelete( all = false ) {
+    const { data } = this.props
+    return (
+      <div>
+        <ModalTitle>Delete {all ? ' all cards' : data.korean}</ModalTitle>
+        <p>Are you sure you want to delete {all ? ' all cards' : data.korean}?</p>
+        <ButtonBox>
+          <Button className='btn alt' onClick={() => this.deleteCard(data.id)}>Delete</Button>
+          &nbsp;
+          <Button className='btn' onClick={this.props.closeModal}>Cancel</Button>
+        </ButtonBox>
       </div>
     )
   }
@@ -89,9 +90,11 @@ class Modal extends Component {
           <Button>
             <FontAwesomeIcon className="close-modal" icon="times" onClick={this.props.closeModal} />
           </Button>
-          {this.props.type === 'delete'
-            ? this.modalDelete()
-            : this.modalEdit()
+          {this.props.type === 'clear'
+            ? this.modalDelete(true)
+            : this.props.type === 'delete'
+              ? this.modalDelete()
+              : this.modalEdit()
           }
         </ModalContainer>
       </Overlay>

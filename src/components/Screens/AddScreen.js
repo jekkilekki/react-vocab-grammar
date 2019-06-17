@@ -14,10 +14,12 @@ const Container = styled.div`
 class GenericScreen extends Component {
   renderForm() {
     switch ( this.props.pageTitle.toLowerCase() ) {
+      case 'letters': return <Form formName={this.props.pageTitle} addImage />
       case 'hangul': return <Form formName={this.props.pageTitle} addImage />
       case 'vocabulary': return <Form formName={this.props.pageTitle} levels='vocab' addImage radioBtns={vocabPartsOfSpeech}/>
       case 'grammar': return <Form formName={this.props.pageTitle} levels='grammar' addImage checkBoxes={grammarPartsOfSpeech} />
       case 'phrases': return <Form formName={this.props.pageTitle} addImage />
+      case 'passages': return <Form formName={this.props.pageTitle} addImage />
       default: return null
     }
   }
