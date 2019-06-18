@@ -12,6 +12,7 @@ import GrammarSingle from './Grammar/GrammarSingle'
 import PhraseSingle from './Phrases/PhraseSingle'
 import Search from './Screens/Search'
 import NotFound from './Screens/NotFound'
+import PrintScreen from './Screens/PrintScreen'
 
 import { checkAuthStatus } from '../stateManagement/actions'
 
@@ -56,6 +57,7 @@ class App extends Component {
             <Route exact path='/passages' render={() => <AddScreen pageTitle='Passages' /> } />
             <Route exact path='/passage/:id' render={() => <PhraseSingle /> } />
             <Route exact path='/search' render={(props) => <Search timestamp={new Date().toString()} {...props} /> } />
+            <Route exact path='/print' render={() => <PrintScreen /> } />
             <Route path='/search/:query' render={(props) => <Search timestamp={new Date().toString()} query={props.match.params.query} {...props} /> } />
             <Route component={NotFound} />
           </Switch>

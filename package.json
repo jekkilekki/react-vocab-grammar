@@ -9,6 +9,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
     "@fortawesome/free-solid-svg-icons": "^5.8.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "@react-pdf/renderer": "^1.6.2",
     "auth0-js": "^9.10.4",
     "i": "^0.3.6",
     "node-sass": "^4.12.0",

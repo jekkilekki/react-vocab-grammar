@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react'
+import { Redirect } from 'react-router'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { cardEdit } from '../../stateManagement/actions'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Modal from './Modal'
+import Pagination from './Pagination'
 
 const ListHeader = styled.div`
   text-align: left;
@@ -86,7 +88,8 @@ class PreviewList extends Component {
   state = {
     showModal: false, 
     modalType: null,
-    modalContent: {}
+    modalContent: {},
+    toPrint: false
   }
 
   openModal = async ( type, card = '' ) => {
@@ -105,7 +108,17 @@ class PreviewList extends Component {
     })
   }
 
+  printable = () => {
+    this.setState({
+      toPrint: true
+    })
+  }
+
   render() {
+    if ( this.state.toPrint ) {
+      return <Redirect to='/print' />
+    }
+
     return (
       <Fragment>
         {this.props.cards &&
@@ -114,7 +127,7 @@ class PreviewList extends Component {
             <ListButtons className='inline'>
               {/* <li><small>List functions:</small></li> */}
               <li>
-                <button className='btn-small' disabled={this.props.cards.length < 15}>
+                <button className='btn-small' disabled={this.props.cards.length < 5}>
                   <FontAwesomeIcon icon='save' />
                   Save
                 </button>
@@ -126,7 +139,7 @@ class PreviewList extends Component {
                 </button>
               </li>
               <li>
-                <button className='btn alt btn-small' disabled={this.props.cards.length < 30}>
+                <button className='btn alt btn-small' disabled={this.props.cards.length < 9} onClick={() => this.printable()}>
                   <FontAwesomeIcon icon='file-pdf' />
                   Print
                 </button>
@@ -163,6 +176,9 @@ class PreviewList extends Component {
             </ListItem>
           ))}
         </List>
+        {this.props.cards.length > 5 &&
+          <Pagination />
+        }
         <Modal formName={this.props.formName} show={this.state.showModal} type={this.state.modalType} data={this.state.modalContent} closeModal={this.closeModal} />
       </Fragment>
     )

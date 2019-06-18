@@ -13,6 +13,7 @@ const Nav = () => {
         <li><NavLink to='/grammar' activeClassName='active'>Grammar</NavLink></li>
         <li><NavLink to='/phrases' activeClassName='active'>Phrases</NavLink></li>
         <li><NavLink to='/passages' activeClassName='active'>Passages</NavLink></li>
+        <li><NavLink to='/print' activeClassName='active'>Print</NavLink></li>
       </ul>
     </nav>
   )
