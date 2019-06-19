@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Redirect } from 'react-router'
+import { NavLink, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { cardEdit } from '../../stateManagement/actions'
@@ -7,6 +7,7 @@ import { cardEdit } from '../../stateManagement/actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Modal from './Modal'
 import Pagination from './Pagination'
+import { generateShortId } from '../../utils/helpers';
 
 const ListHeader = styled.div`
   text-align: left;
@@ -40,17 +41,20 @@ const ListItem = styled.li`
 
 const ListNumber = styled.p`
   margin: 0 0.5rem 0 0;
+  width: 22px;
+  text-align: right;
   font-size: 0.8rem;
   opacity: 0.5;
 `
 
 const ListImage = styled.div`
   height: 50px;
-  width: 65px;
+  width: 50px;
   background-position: center;
   background-size: cover;
   margin-right: 1rem;
   cursor: pointer;
+  border-radius: 50px;
 `
 
 const ListText = styled.p`
@@ -112,6 +116,7 @@ class PreviewList extends Component {
     this.setState({
       toPrint: true
     })
+    this.props.navigation.push('print')
   }
 
   render() {
@@ -139,10 +144,19 @@ class PreviewList extends Component {
                 </button>
               </li>
               <li>
-                <button className='btn alt btn-small' disabled={this.props.cards.length < 9} onClick={() => this.printable()}>
+                <NavLink 
+                  to={{ 
+                    pathname: '/flashcards', 
+                    search: `?type=${this.props.formName}`, 
+                    hash: `#${generateShortId()}`, 
+                    state: { data: this.props.cards } 
+                  }} 
+                  className='btn alt btn-small' 
+                  disabled={this.props.cards.length < 9}
+                >
                   <FontAwesomeIcon icon='file-pdf' />
                   Print
-                </button>
+                </NavLink>
               </li>
             </ListButtons>
           </ListHeader>

@@ -14,16 +14,31 @@ const styles = StyleSheet.create({
 })
 
 const PdfDocument = () => (
-  <Document>
-    <Page size='A4' style={styles.page}>
-      <View style={styles.section}>
-        <Text>Hello World</Text>
-      </View>
-      <View style={styles.section}>
-        <Text>Hello again, World</Text>
-      </View>
-    </Page>
-  </Document>
+  <Document
+          title='Title'
+          author='Author'
+          subject='Subject'
+          keywords='keywords'
+          creator='react-pdf'
+          producer='react-pdf'
+          onRender={() => this.setState({ render: true })}
+          onLoadSuccess={() => this.setState({ render: true })}
+        >
+          <Page 
+            size='A4' 
+            orientation='landscape'
+            ruler={true} 
+            debug={true}
+            style={styles.page}
+          >
+            <View style={styles.section}>
+              <Text>Hello World</Text>
+            </View>
+            <View style={styles.section}>
+              <Text>Hello again, World</Text>
+            </View>
+          </Page>
+        </Document>
 )
 
 export default PdfDocument

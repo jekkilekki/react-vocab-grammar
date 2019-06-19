@@ -9,12 +9,12 @@ const INITIAL_STATE = {
   loggedIn: null,
   error: '',
   saving: false,
-  Letter: {},
+  Letters: {},
   Hangul: {},
   Vocabulary: {},
   Grammar: {},
-  Phrase: {},
-  Passage: {}
+  Phrases: {},
+  Passages: {}
 }
 
 export default ( state = INITIAL_STATE, action ) => {

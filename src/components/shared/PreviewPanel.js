@@ -42,6 +42,8 @@ class PreviewPanel extends Component {
   render() {
     const { formName, app } = this.props
 
+    if ( app[formName] === undefined ) return null
+
     return (
       <Panel className='preview-panel'>
         <CardContainer>

@@ -492,7 +492,8 @@ button {
   @include btn;
 }
 
-button svg {
+button svg,
+.btn svg {
   opacity: 0.8;
   margin-right: 5px;
 }
@@ -1087,4 +1088,16 @@ ul.page-numbers {
 
 .bg-grey {
   background: $grey-light;
+}
+
+/*IFRAMES *
+-----------------------------------------------*/
+.printable-pdf {
+  width: 100vw;
+  height: calc( 100vh - 72px );
+  border: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
 }

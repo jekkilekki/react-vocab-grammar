@@ -13,6 +13,7 @@ import PhraseSingle from './Phrases/PhraseSingle'
 import Search from './Screens/Search'
 import NotFound from './Screens/NotFound'
 import PrintScreen from './Screens/PrintScreen'
+import Quixote from './Screens/Quixote'
 
 import { checkAuthStatus } from '../stateManagement/actions'
 
@@ -23,6 +24,7 @@ import {
   faPencilAlt, faTrashAlt, faFilePdf, faSave, faTimes, 
   faAngleDown 
 } from '@fortawesome/free-solid-svg-icons'
+import Flashcards from './Screens/FlashCards';
 
 library.add( faHome, faPlusCircle, faMinusCircle, faPencilAlt, faTrashAlt, faFilePdf, faSave, faTimes, faAngleDown )
 
@@ -58,6 +60,8 @@ class App extends Component {
             <Route exact path='/passage/:id' render={() => <PhraseSingle /> } />
             <Route exact path='/search' render={(props) => <Search timestamp={new Date().toString()} {...props} /> } />
             <Route exact path='/print' render={() => <PrintScreen /> } />
+            <Route exact path='/quixote' render={() => <Quixote /> } />
+            <Route exact path='/flashcards' render={() => <Flashcards /> } />
             <Route path='/search/:query' render={(props) => <Search timestamp={new Date().toString()} query={props.match.params.query} {...props} /> } />
             <Route component={NotFound} />
           </Switch>

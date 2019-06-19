@@ -105,6 +105,8 @@ class Form extends Component {
       formName, levels, addImage, withPronunciation, radioBtns, checkBoxes, memorizationHint, app
     } = this.props
 
+    if ( app[formName] === undefined ) return null
+
     return (
       <FormContainer id={formName} onSubmit={this.formSubmit}>
         {app.error !== '' && <Error>{app.error}</Error>}
@@ -172,7 +174,7 @@ class Form extends Component {
           />
         }
 
-        {formName.toLowerCase() !== 'phrase' && formName.toLowerCase() !== 'hangul' &&
+        {formName.toLowerCase() !== 'phrases' && formName.toLowerCase() !== 'hangul' &&
           <Fragment>
             <label htmlFor="definition" className="float-label">Definition</label>
             <FormAddFields title="definition(s)" 
