@@ -18,7 +18,6 @@ const INITIAL_STATE = {
 }
 
 export default ( state = INITIAL_STATE, action ) => {
-  console.log( 'here we are!')
   switch ( action.type ) {
     case LOAD_APP_DATA: 
       return { ...state, app: action.payload.appData }

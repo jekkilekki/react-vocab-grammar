@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { NavLink, Redirect } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { cardEdit } from '../../stateManagement/actions'
@@ -7,7 +7,7 @@ import { cardEdit } from '../../stateManagement/actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Modal from './Modal'
 import Pagination from './Pagination'
-import { generateShortId } from '../../utils/helpers';
+import { generateShortId, createArraySubsets } from '../../utils/helpers'
 
 const ListHeader = styled.div`
   text-align: left;
@@ -93,8 +93,17 @@ class PreviewList extends Component {
     showModal: false, 
     modalType: null,
     modalContent: {},
-    pageNum: 1,
-    numPages: null
+    pageNum: 2,
+    pages: 1, 
+    itemsPerPage: 5,
+    visibleItems: []
+  }
+
+  async componentWillMount() {
+    let cardsArray = this.props.cards
+    await this.setState({
+      pages: createArraySubsets( cardsArray, 5 )
+    })
   }
 
   openModal = async ( type, card = '' ) => {
@@ -113,7 +122,16 @@ class PreviewList extends Component {
     })
   }
 
+  changePage = (offset) => this.setState( prevState => ({
+    pageNum: prevState.pageNum + offset
+  }))
+
+  prevPage = () => this.changePage(-1)
+
+  nextPage = () => this.changePage(1)
+
   render() {
+    console.log('Vocab pages I guess', this.state)
     return (
       <Fragment>
         {this.props.cards.length > 0 &&
@@ -152,36 +170,46 @@ class PreviewList extends Component {
           </ListHeader>
         }
         <List>
-          {this.props.cards.map((card, i) => (
-            <ListItem key={card.id}>
+          {this.state.pages[this.state.pageNum - 1].map((card, i) => {
+            if ( i * this.state.pageNum < this.state.pageNum * this.state.itemsPerPage) 
+              return (
+                <ListItem key={card.id}>
 
-              <ListNumber>{i+1})</ListNumber>
+                  <ListNumber>{i+1})</ListNumber>
 
-              {card.imageUrl && 
-                <ListImage style={{backgroundImage: `url(${card.imageUrl})`}}
-                  onClick={() => this.openModal('edit', card)}
-                >
-                </ListImage>
-              }
+                  {card.imageUrl && 
+                    <ListImage style={{backgroundImage: `url(${card.imageUrl})`}}
+                      onClick={() => this.openModal('edit', card)}
+                    >
+                    </ListImage>
+                  }
 
-              <ListText onClick={() => this.openModal('edit', card)}>
-                <strong>{card.korean}</strong>
-                <ListDefinition>{card.english}</ListDefinition>
-              </ListText>
+                  <ListText onClick={() => this.openModal('edit', card)}>
+                    <strong>{card.korean}</strong>
+                    <ListDefinition>{card.english}</ListDefinition>
+                  </ListText>
 
-              <ListIcons>
-                {/* <ListIcon>
-                  <FontAwesomeIcon className="edit-item" icon="pencil-alt" onClick={() => this.props.cardEdit({ formId: this.props.form, cardId: card.id })} />
-                </ListIcon> */}
-                <ListIcon>
-                  <FontAwesomeIcon className="delete-item" icon="trash-alt" onClick={() => this.openModal('delete', card)} />
-                </ListIcon>
-              </ListIcons>
-            </ListItem>
-          ))}
+                  <ListIcons>
+                    {/* <ListIcon>
+                      <FontAwesomeIcon className="edit-item" icon="pencil-alt" onClick={() => this.props.cardEdit({ formId: this.props.form, cardId: card.id })} />
+                    </ListIcon> */}
+                    <ListIcon>
+                      <FontAwesomeIcon className="delete-item" icon="trash-alt" onClick={() => this.openModal('delete', card)} />
+                    </ListIcon>
+                  </ListIcons>
+                </ListItem>
+              )
+            return null
+          })}
         </List>
         {this.props.cards.length > 5 &&
-          <Pagination itemsPerPage={5} />
+          <Pagination 
+            pageNum={this.state.pageNum}
+            numPages={this.props.cards.length / this.state.itemsPerPage}
+            itemsPerPage={this.state.itemsPerPage}
+            prevPage={this.prevPage}
+            nextPage={this.nextPage}
+          />
         }
         <Modal formName={this.props.formName} show={this.state.showModal} type={this.state.modalType} data={this.state.modalContent} closeModal={this.closeModal} />
       </Fragment>

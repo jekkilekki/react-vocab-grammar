@@ -1,11 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 
-const Button = styled.button`
-  position: absolute;
-  right: 0;
-  top: 10px;
-`
+// const Button = styled.button`
+//   position: absolute;
+//   right: 0;
+//   top: 10px;
+// `
 
 const FormAddImage = (props) => {
   return (

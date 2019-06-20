@@ -17,9 +17,7 @@ class FormAddFields extends Component {
   }
 
   componentDidMount() {
-    console.log('This data', this.props.data)
     if ( this.props.data.length < 1 ) {
-      console.log('should add it')
       this.addField()
     }
   }
@@ -30,8 +28,8 @@ class FormAddFields extends Component {
   }
 
   addField = () => {
-    const { formName, title, data } = this.props
-    let niceTitle = title.replace( /\W/g, '' )
+    // const { formName, title, data } = this.props
+    // let niceTitle = title.replace( /\W/g, '' )
 
     // formFieldUpdate({ formName: formName, prop: niceTitle, value: data.concat({ id: niceTitle + data.length++, value: '' }) })
     this.setState({
@@ -53,31 +51,6 @@ class FormAddFields extends Component {
         data: [{ key: generateShortId(this.props.title), id: this.state.data[0].id, value: '' }]
       })
     }
-
-
-    // let list = this.props.title + "-item"
-    // console.log(list)
-    // let elements = document.querySelectorAll( "definition-item" )
-    // console.log(elements)
-
-    // elements.map(element => {
-      // if ( e.target.value === '' ) {
-      //   const data = this.state.data 
-      //   // const index = e.target.id.replace( /\D+/g, '' )
-        
-      //   let newdata = data.filter( item => {
-      //     return item.value !== ''
-      //   })
-      //   console.log(newdata)
-      //   if ( newdata.length < 1 ) {
-      //     newdata = [{ id: this.props.title + "0", value: "" }]
-      //   }
-      //   console.log(newdata)
-      //   this.setState({
-      //     data: newdata
-      //   })
-      // }
-    // })
   }
 
   conditionallyRemoveField = (e, id) => {
@@ -101,7 +74,7 @@ class FormAddFields extends Component {
   }
 
   render() {
-    const { app, title } = this.props
+    const { title } = this.props
     let niceTitle = title.replace( /\W/g, '' )
 
     return (

@@ -43,7 +43,7 @@ const Label = styled.p`
 class CardBack extends Component {
 
   render() {
-    const { koreanLetter, korean, imageUrl, radioSelected, checkboxesChecked } = this.props.card
+    const { koreanLetter, imageUrl, radioSelected, checkboxesChecked } = this.props.card
     let radio = '', checked = []
     if ( radioSelected !== undefined ) {
       radio = getPartOfSpeech('radio', radioSelected)

@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { PDFViewer, Document, Page, Text, View, Image, Font, StyleSheet } from '@react-pdf/renderer'
+import { createArraySubsets } from '../../utils/helpers'
 
 class Flashcards extends Component {
   render() {
     const { data } = this.props.location.state
-    let rowData = [], size = 3
-
-    while ( data.length > 0 ) 
-      rowData.push( data.splice(0, size))
+    let rowData = createArraySubsets( data, 3 )
 
     return(
       <PDFViewer className='printable-pdf'>

@@ -19,13 +19,7 @@ class Pagination extends Component {
     
   }
 
-  changePage = (offset) => this.setState( prevState => ({
-    pageNum: prevState.pageNum + offset
-  }))
-
-  prevPage = () => this.changePage(-1)
-
-  nextPage = () => this.changePage(1)
+  
 
   render() {
     const { pageNum, numPages } = this.state

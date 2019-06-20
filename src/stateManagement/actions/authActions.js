@@ -1,4 +1,4 @@
-import { CHECK_AUTH_STATUS, LOGIN_SUCCESS, LOGIN_FAIL } from './index'
+import { CHECK_AUTH_STATUS, LOGIN_SUCCESS } from './index'
 
 export const checkAuthStatus = () => {
   return async (dispatch) => {
@@ -13,9 +13,9 @@ const userLoggedIn = (dispatch) => {
   })
 }
 
-const userLoggedOut = (dispatch) => {
-  dispatch({
-    type: LOGIN_FAIL
-  })
-}
+// const userLoggedOut = (dispatch) => {
+//   dispatch({
+//     type: LOGIN_FAIL
+//   })
+// }
 

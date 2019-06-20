@@ -6,6 +6,15 @@ export function generateShortId( base = '' ) {
   return base + Math.random().toString(36).substring(2,5) + Math.random().toString(36).substring(2,5)
 }
 
+export function createArraySubsets( array, size ) {
+  let subsets = []
+
+  while ( array.length > 0 ) 
+    subsets.push( array.splice(0, size))
+
+  return subsets
+}
+
 export const dummyData = [
   {
     english: "butterfly",

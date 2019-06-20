@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { formFieldUpdate } from '../../stateManagement/actions'
@@ -18,20 +18,20 @@ const CardContainer = styled.div`
   grid-template-columns: 1fr 1fr;
 `
 
-const Image = styled.img`
-  max-width: 90%;
-  margin: 0 auto;
-`
+// const Image = styled.img`
+//   max-width: 90%;
+//   margin: 0 auto;
+// `
 
-const Card = styled.div`
-  background: white;
-  box-shadow: 1px 2px 10px rgba(0,0,0,0.3);
-  padding: 10px;
-  margin: 0 auto;
-  width: 95%;
-  max-width: 200px;
-  height: 140px;
-`
+// const Card = styled.div`
+//   background: white;
+//   box-shadow: 1px 2px 10px rgba(0,0,0,0.3);
+//   padding: 10px;
+//   margin: 0 auto;
+//   width: 95%;
+//   max-width: 200px;
+//   height: 140px;
+// `
 
 const PreviewTitle = styled.p`
   text-align: center;
