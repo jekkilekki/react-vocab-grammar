@@ -93,7 +93,8 @@ class PreviewList extends Component {
     showModal: false, 
     modalType: null,
     modalContent: {},
-    toPrint: false
+    pageNum: 1,
+    numPages: null
   }
 
   openModal = async ( type, card = '' ) => {
@@ -112,21 +113,10 @@ class PreviewList extends Component {
     })
   }
 
-  printable = () => {
-    this.setState({
-      toPrint: true
-    })
-    this.props.navigation.push('print')
-  }
-
   render() {
-    if ( this.state.toPrint ) {
-      return <Redirect to='/print' />
-    }
-
     return (
       <Fragment>
-        {this.props.cards &&
+        {this.props.cards.length > 0 &&
           <ListHeader>
             <small className='no-word-wrap'>Created Cards ({this.props.cards.length})</small>
             <ListButtons className='inline'>
@@ -146,9 +136,9 @@ class PreviewList extends Component {
               <li>
                 <NavLink 
                   to={{ 
-                    pathname: '/flashcards', 
-                    search: `?type=${this.props.formName}`, 
-                    hash: `#${generateShortId()}`, 
+                    pathname: `/flashcards/${generateShortId()}`, 
+                    // search: `?type=${this.props.formName}`, 
+                    // hash: `#${generateShortId()}`, 
                     state: { data: this.props.cards } 
                   }} 
                   className='btn alt btn-small' 
@@ -191,7 +181,7 @@ class PreviewList extends Component {
           ))}
         </List>
         {this.props.cards.length > 5 &&
-          <Pagination />
+          <Pagination itemsPerPage={5} />
         }
         <Modal formName={this.props.formName} show={this.state.showModal} type={this.state.modalType} data={this.state.modalContent} closeModal={this.closeModal} />
       </Fragment>

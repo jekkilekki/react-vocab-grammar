@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { formFieldUpdate } from '../../stateManagement/actions'
 
 import PreviewList from './PreviewList'
-import CardFront from './CardFront'
-import CardBack from './CardBack'
+import CardFront from './CardBack'
+import CardBack from './CardFront'
 
 const Panel = styled.div`
   background: rgba(169,186,201,0.5);
@@ -59,7 +59,7 @@ class PreviewPanel extends Component {
           </div>
         </CardContainer>
 
-        {app[formName].cards &&
+        {app[formName].cards && app[formName].cards.length > 0 &&
           <PreviewList formName={formName} cards={app[formName].cards} />
         }
       </Panel>

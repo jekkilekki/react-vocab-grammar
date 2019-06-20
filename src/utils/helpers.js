@@ -6,6 +6,88 @@ export function generateShortId( base = '' ) {
   return base + Math.random().toString(36).substring(2,5) + Math.random().toString(36).substring(2,5)
 }
 
+export const dummyData = [
+  {
+    english: "butterfly",
+    id: "erkoce4qtpffo5qwlysvw",
+    imageUrl: "https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg",
+    korean: "나비",
+    radioSelected: "noun-radio",
+  },
+  {
+    english: "Elephant",
+    id: "kcshf85iao7tevsjw2f58",
+    imageUrl: "https://images2.minutemediacdn.com/image/upload/c_crop,h_1194,w_2119,x_0,y_166/f_auto,q_auto,w_1100/v1554917073/shape/mentalfloss/86712-istock-503686732.jpg",
+    korean: "코끼리",
+    level: "a",
+    radioSelected: "noun-radio",
+    sentences: [
+      {
+        id: "sentence(s)0",
+        value: "코끼리의 코는 손이에요."
+      }
+    ]
+  },
+  {
+    english: "dolphin",
+    id: "ayjclyjwpmmvnu00yd3owd",
+    imageUrl: "https://live.staticflickr.com/213/458562896_b2844fa971_z.jpg",
+    korean: "돌고래",
+    level: "a",
+    radioSelected: "noun-radio",
+  },
+  {
+    english: "bee",
+    id: "kxlba0pa5kimymxastq7f",
+    imageUrl: "https://cdn.pixabay.com/photo/2018/04/07/12/25/bee-3298375_960_720.jpg",
+    korean: "벌",
+    radioSelected: "noun-radio",
+  },
+  {
+    english: "wolf",
+    id: "xq2g6k69y4qmznan9zz98c",
+    imageUrl: "https://cdn.pixabay.com/photo/2018/11/15/22/52/wolf-3818343_960_720.jpg",
+    korean: "늑대",
+    level: "a",
+    radioSelected: "noun-radio",
+  },
+  {
+    english: "tiger",
+    id: "th351q3b7rnhb7lczhw5bt",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Siberischer_tiger_de_edit02.jpg/800px-Siberischer_tiger_de_edit02.jpg",
+    korean: "호랑이",
+    radioSelected: "noun-radio",
+  },
+  {
+    english: "puppy",
+    id: "8vrdifotlt8ekv584brl09",
+    imageUrl: "https://cdn.pixabay.com/photo/2019/05/14/18/48/dog-4203154_960_720.jpg",
+    korean: "강아지",
+    radioSelected: "noun-radio",
+  },
+  {
+    english: "lion",
+    id: "7vubkq6gafka2g27su6kt",
+    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGkBJnY-xi7de5AqDz5Fn_6cJ2YVYczIjAq7yFTw3hOZndFoIEZA",
+    korean: "사자",
+    radioSelected: "noun-radio",
+  },
+  {
+    english: "camel",
+    id: "4357mmitzlru833pjftn6f",
+    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE6pYN7J_Co15POjehRGIhYjDKiwAztPY3ArxqorXRU9roUXU7qA",
+    korean: "낙타",
+    radioSelected: "noun-radio",
+  },
+  {
+    english: "gorilla",
+    id: "vrdvjv9yrir4xmk9a34mdi",
+    imageUrl: "https://cdn.pixabay.com/photo/2018/05/04/12/13/gorilla-3373856_960_720.jpg",
+    korean: "고릴라",
+    radioSelected: "noun-radio",
+  }
+]
+
 export const levelsVocab = [
   { id: 'none', value: '', name: 'Select Level' },
   { id: 'a', value: 'a', name: 'Beginner' },

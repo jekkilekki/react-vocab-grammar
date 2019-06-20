@@ -1,7 +1,7 @@
 import { 
   LOAD_APP_DATA, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, 
   FORM_FIELD_UPDATE, FORM_SAVE, FORM_SAVE_COMPLETE,
-  CARD_DELETE, CARD_EDIT, FORM_ERROR
+  CARD_DELETE, CARD_EDIT, FORM_ERROR, CARDS_DELETE_ALL, LOAD_DUMMY_DATA, CREATE_FORM
 } from '../actions'
 import { generateShortId } from '../../utils/helpers'
 
@@ -18,9 +18,19 @@ const INITIAL_STATE = {
 }
 
 export default ( state = INITIAL_STATE, action ) => {
+  console.log( 'here we are!')
   switch ( action.type ) {
     case LOAD_APP_DATA: 
       return { ...state, app: action.payload.appData }
+    case LOAD_DUMMY_DATA: 
+      return { ...state, 
+        [action.payload.formId]: {
+          ...state[action.payload.formId],
+          cards: action.payload.data
+        }
+      }
+    case CREATE_FORM: 
+      return { ...state, INITIAL_STATE }
     case LOGIN_SUCCESS: 
       return { ...state, loggedIn: true }
     case LOGIN_FAIL:
@@ -76,6 +86,12 @@ export default ( state = INITIAL_STATE, action ) => {
           definitions: foundCard.definitions || [{ key: generateShortId("definitions(0)"), id: "definitions(0)", value: "" }],
           sentences: foundCard.sentences || [{ key: generateShortId("sentences(0)"), id: "sentences(0)", value: "" }]
         }
+      }
+    case CARDS_DELETE_ALL: 
+      console.log('do it!')
+      return {
+        ...state,
+        [action.payload.formId]: {}
       }
     default: 
       return state

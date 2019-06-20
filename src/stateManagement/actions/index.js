@@ -1,4 +1,6 @@
 export const LOAD_APP_DATA = 'load_app_data'
+export const LOAD_DUMMY_DATA = 'load_dummy_data'
+export const CREATE_FORM = 'create_form'
 
 export const CHECK_AUTH_STATUS = 'check_auth_status'
 export const LOGIN = 'login'
@@ -16,6 +18,7 @@ export const FORM_FIELD_UPDATE = 'form_field_update'
 export const FORM_ERROR = 'form_error'
 export const CARD_DELETE = 'card_delete'
 export const CARD_EDIT = 'card_edit'
+export const CARDS_DELETE_ALL = 'cards_delete_all'
 
 export const LIST_SAVE = 'list_save'
 export const LIST_CLEAR = 'list_clear'

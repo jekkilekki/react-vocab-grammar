@@ -1,213 +1,71 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-// import ReactPDF, {  } from '@react-pdf/renderer'
+import React, { Component } from 'react'
 import { PDFViewer, Document, Page, Text, View, Image, Font, StyleSheet } from '@react-pdf/renderer'
 
-const Flashcards = (props) => (
-  <PDFViewer className='printable-pdf'>
-  <Document size='A4' orientation='portrait'>
-    <Page style={styles.body}>
-      <Text style={styles.header} fixed>
-        ~ Created with react-pdf ~
-      </Text>
-      {console.log(props.location)
-        // props.navigation.state.data.map((card, i) => (
-        //   <View style={styles.card}>
-        //     <Text style={styles.title}>{card.korean}</Text>
-        //     <Text style={styles.author}>{card.english}</Text>
-        //   </View>
-        // ))
-      }
-      <View style={styles.cardRow}>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-      </View>
-      <View style={styles.cardRow}>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-      </View>
-      <View style={styles.cardRow}>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-      </View>
-      <View style={styles.cardRow}>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-      </View>
-      <View style={styles.cardRow}>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.title}>Don Quijote de la Mancha</Text>
-          <Text style={styles.author}>Miguel de Cervantes</Text>
-        </View>
-      </View>
-      <Text style={styles.pageNumber} render={({ pageNumber, totalPages }) => (
-        `${pageNumber} / ${totalPages}`
-      )} fixed />
-    </Page>
+class Flashcards extends Component {
+  render() {
+    const { data } = this.props.location.state
+    let rowData = [], size = 3
 
-    <Page style={styles.body}>
-      <Text style={styles.header} fixed>
-        ~ Created with react-pdf ~
-      </Text>
-      <View style={styles.cardRowReverse}>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-          />
-        </View>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://images.pexels.com/photos/2450122/pexels-photo-2450122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-          />
-        </View>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://i0.wp.com/i.redd.it/kpdoblsdkd8z.png?w=600"
-          />
-        </View>
-      </View>
-      <View style={styles.cardRowReverse}>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-          />
-        </View>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://images.pexels.com/photos/2450122/pexels-photo-2450122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-          />
-        </View>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://i0.wp.com/i.redd.it/kpdoblsdkd8z.png?w=600"
-          />
-        </View>
-      </View>
-      <View style={styles.cardRowReverse}>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-          />
-        </View>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://images.pexels.com/photos/2450122/pexels-photo-2450122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-          />
-        </View>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://i0.wp.com/i.redd.it/kpdoblsdkd8z.png?w=600"
-          />
-        </View>
-      </View>
-      <View style={styles.cardRowReverse}>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-          />
-        </View>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://images.pexels.com/photos/2450122/pexels-photo-2450122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-          />
-        </View>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://i0.wp.com/i.redd.it/kpdoblsdkd8z.png?w=600"
-          />
-        </View>
-      </View>
-      <View style={styles.cardRowReverse}>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-          />
-        </View>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://images.pexels.com/photos/2450122/pexels-photo-2450122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-          />
-        </View>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            src="https://i0.wp.com/i.redd.it/kpdoblsdkd8z.png?w=600"
-          />
-        </View>
-      </View>
-      <Text style={styles.pageNumber} render={({ pageNumber, totalPages }) => (
-        `${pageNumber} / ${totalPages}`
-      )} fixed />
-    </Page>
-  </Document>
-  </PDFViewer>
-);
+    while ( data.length > 0 ) 
+      rowData.push( data.splice(0, size))
+
+    return(
+      <PDFViewer className='printable-pdf'>
+      <Document size='A4' orientation='portrait'>
+        <Page style={styles.body}>
+          <Text style={styles.header} fixed>
+            ~ Created with react-pdf ~
+          </Text>
+          {console.log('Flashcards data: ', this.props.location.state.data)}
+          { rowData && 
+            rowData.map((row, i) => (
+              <View key={i} style={styles.cardRow}>
+                { row.map(card => (
+                  <View key={card.id} style={styles.card}>
+                    <Text style={styles.title}>{card.korean} 안녕</Text>
+                    <Text style={styles.author}>{card.english}</Text>
+                  </View>
+                ))}
+              </View>
+            ))
+          }
+          <Text style={styles.pageNumber} render={({ pageNumber, totalPages }) => (
+            `${pageNumber} / ${totalPages}`
+          )} fixed />
+        </Page>
+
+        <Page style={styles.body}>
+          <Text style={styles.header} fixed>
+            ~ Created with react-pdf ~
+          </Text>
+          { rowData &&
+            rowData.map((row, i) => (
+              <View key={i} style={styles.cardRowReverse}>
+                { row.map( card => (
+                  <View style={styles.card}>
+                    <Image
+                      style={styles.image}
+                      src={card.imageUrl}
+                    />
+                  </View>
+                ))}
+              </View>
+            ))
+          }
+          <Text style={styles.pageNumber} render={({ pageNumber, totalPages }) => (
+            `${pageNumber} / ${totalPages}`
+          )} fixed />
+        </Page>
+      </Document>
+      </PDFViewer>
+    )
+  }
+}
 
 Font.register({
-  family: 'Oswald',
-  src: 'https://fonts.gstatic.com/s/oswald/v13/Y_TKV6o8WovbUd3m_X9aAA.ttf'
+  family: 'NotoSansKR',
+  // src: 'https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf',
+  src: 'assets/fonts/NotoSansKR-Regular.ttf'
 });
 
 const styles = StyleSheet.create({
@@ -223,7 +81,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: 'dotted',
     borderColor: 'gray',
-    paddingTop: 15,
+    position: 'relative',
+  },
+  image: {
+    margin: '5% auto',
+    width: '90%',
+    height: '90%',
+    objectFit: 'cover'
   },
   cardRow: {
     display: 'flex',
@@ -235,13 +99,15 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
+    marginTop: 24,
+    marginBottom: 12,
     textAlign: 'center',
-    fontFamily: 'Oswald'
+    // fontFamily: 'NotoSansKR', 
   },
   author: {
     fontSize: 12,
     textAlign: 'center',
-    marginBottom: 40,
+    // marginBottom: 40,
   },
   subtitle: {
     fontSize: 18,
@@ -253,10 +119,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: 'justify',
     fontFamily: 'Times-Roman'
-  },
-  image: {
-    // marginVertical: 15,
-    // marginHorizontal: 100,
   },
   header: {
     fontSize: 12,
@@ -275,5 +137,5 @@ const styles = StyleSheet.create({
   },
 });
 
-ReactDOM.render(<Flashcards />, document.getElementById('root'));
+// ReactDOM.render(<Flashcards />, document.getElementById('root'));
 export default Flashcards

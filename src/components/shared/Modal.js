@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { cardDelete, formFieldUpdate } from '../../stateManagement/actions'
+import { cardDelete, cardsDeleteAll, formFieldUpdate } from '../../stateManagement/actions'
 import SingleScreen from '../Screens/SingleScreen'
  
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -56,6 +56,12 @@ class Modal extends Component {
     this.props.closeModal()
   }
 
+  deleteAll = () => {
+    console.log('Deleting!')
+    cardsDeleteAll({ formId: this.props.formName })
+    this.props.closeModal()
+  }
+
   modalEdit() {
     const { data } = this.props
     return (
@@ -70,10 +76,13 @@ class Modal extends Component {
     const { data } = this.props
     return (
       <div>
-        <ModalTitle>Delete {all ? ' all cards' : data.korean}</ModalTitle>
+        <ModalTitle>Delete { all ? ' all cards' : data.korean }</ModalTitle>
         <p>Are you sure you want to delete {all ? ' all cards' : data.korean}?</p>
         <ButtonBox>
-          <Button className='btn alt' onClick={() => this.deleteCard(data.id)}>Delete</Button>
+          { all
+            ? <Button className='btn alt' onClick={this.deleteAll}>Delete All</Button>
+            : <Button className='btn alt' onClick={() => this.deleteCard(data.id)}>Delete</Button>
+          }
           &nbsp;
           <Button className='btn' onClick={this.props.closeModal}>Cancel</Button>
         </ButtonBox>
@@ -106,4 +115,4 @@ const mapStateToProps = ({ app }) => {
   return { app }
 }
 
-export default connect(mapStateToProps, { cardDelete, formFieldUpdate })(Modal)
+export default connect(mapStateToProps, { cardDelete, cardsDeleteAll, formFieldUpdate })(Modal)

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
-import { formError, formFieldUpdate, formSave } from '../../stateManagement/actions'
+import { createForm, formError, formFieldUpdate, formSave } from '../../stateManagement/actions'
 import { connect } from 'react-redux'
 
 import FormAddFields from './FormAddFields'
@@ -105,7 +105,7 @@ class Form extends Component {
       formName, levels, addImage, withPronunciation, radioBtns, checkBoxes, memorizationHint, app
     } = this.props
 
-    if ( app[formName] === undefined ) return null
+    if ( app[formName] === undefined ) createForm(app[formName])
 
     return (
       <FormContainer id={formName} onSubmit={this.formSubmit}>
@@ -216,4 +216,4 @@ const mapStateToProps = ({ app }) => {
   return { app }
 }
 
-export default connect(mapStateToProps, { formError, formFieldUpdate, formSave })(Form)
+export default connect(mapStateToProps, { createForm, formError, formFieldUpdate, formSave })(Form)
