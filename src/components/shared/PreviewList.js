@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { cardEdit } from '../../stateManagement/actions'
@@ -7,7 +7,7 @@ import { cardEdit } from '../../stateManagement/actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Modal from './Modal'
 import Pagination from './Pagination'
-import { generateShortId, createArraySubsets } from '../../utils/helpers'
+import { generateShortId } from '../../utils/helpers';
 
 const ListHeader = styled.div`
   text-align: left;
@@ -94,16 +94,9 @@ class PreviewList extends Component {
     modalType: null,
     modalContent: {},
     pageNum: 2,
-    pages: 1, 
+    numPages: null, 
     itemsPerPage: 5,
     visibleItems: []
-  }
-
-  async componentWillMount() {
-    let cardsArray = this.props.cards
-    await this.setState({
-      pages: createArraySubsets( cardsArray, 5 )
-    })
   }
 
   openModal = async ( type, card = '' ) => {
@@ -131,7 +124,6 @@ class PreviewList extends Component {
   nextPage = () => this.changePage(1)
 
   render() {
-    console.log('Vocab pages I guess', this.state)
     return (
       <Fragment>
         {this.props.cards.length > 0 &&
@@ -170,7 +162,7 @@ class PreviewList extends Component {
           </ListHeader>
         }
         <List>
-          {this.state.pages[this.state.pageNum - 1].map((card, i) => {
+          {this.props.cards.map((card, i) => {
             if ( i * this.state.pageNum < this.state.pageNum * this.state.itemsPerPage) 
               return (
                 <ListItem key={card.id}>

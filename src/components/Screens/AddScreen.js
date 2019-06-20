@@ -11,6 +11,17 @@ const Container = styled.div`
   display: flex;
 `
 
+const PageTitle = styled.h1`
+  position: relative;
+`
+
+const LoadButton = styled.button`
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+`
+
 class GenericScreen extends Component {
   renderForm() {
     switch ( this.props.pageTitle.toLowerCase() ) {
@@ -29,7 +40,7 @@ class GenericScreen extends Component {
 
     return (
       <div className="container">
-        <h1 className="page-title">{this.props.pageTitle}</h1>
+        <PageTitle className="page-title">{this.props.pageTitle}</PageTitle>
         { !loggedIn && <Warning /> }
         { loggedIn && 
           <Container className='add-item-container'>  

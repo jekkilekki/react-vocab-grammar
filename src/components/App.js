@@ -22,11 +22,11 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { 
   faHome, faPlusCircle, faMinusCircle, 
   faPencilAlt, faTrashAlt, faFilePdf, faSave, faTimes, 
-  faAngleDown 
+  faAngleDown, faHistory, faPlus
 } from '@fortawesome/free-solid-svg-icons'
 import Flashcards from './Screens/FlashCards';
 
-library.add( faHome, faPlusCircle, faMinusCircle, faPencilAlt, faTrashAlt, faFilePdf, faSave, faTimes, faAngleDown )
+library.add( faHome, faPlusCircle, faMinusCircle, faPencilAlt, faTrashAlt, faFilePdf, faSave, faTimes, faAngleDown, faHistory, faPlus )
 
 class App extends Component {
   componentDidMount() {

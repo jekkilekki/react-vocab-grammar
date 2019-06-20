@@ -1,6 +1,8 @@
 export const LOAD_APP_DATA = 'load_app_data'
-export const LOAD_DUMMY_DATA = 'load_dummy_data'
-export const CREATE_FORM = 'create_form'
+// export const CREATE_FORM = 'create_form'
+export const SAMPLE_DATA_OVERWRITE = 'sample_data_overwrite'
+export const SAMPLE_DATA_APPEND = 'sample_data_append'
+export const SAMPLE_DATA_DELETE = 'sample_data_delete'
 
 export const CHECK_AUTH_STATUS = 'check_auth_status'
 export const LOGIN = 'login'

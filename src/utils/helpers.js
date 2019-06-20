@@ -15,7 +15,7 @@ export function createArraySubsets( array, size ) {
   return subsets
 }
 
-export const dummyData = [
+export const sampleData = [
   {
     english: "butterfly",
     id: "erkoce4qtpffo5qwlysvw",

@@ -1,15 +1,30 @@
 import { 
   SEARCH_QUERY, FORM_FIELD_UPDATE, FORM_SAVE, FORM_SAVE_COMPLETE,
-  CARD_DELETE, CARD_EDIT, FORM_ERROR, CARDS_DELETE_ALL, LOAD_DUMMY_DATA,
-  CREATE_FORM
+  CARD_DELETE, CARD_EDIT, FORM_ERROR, CARDS_DELETE_ALL, 
+  SAMPLE_DATA_OVERWRITE, SAMPLE_DATA_APPEND, SAMPLE_DATA_DELETE,
+  CREATE_FORM,
 } from './index'
 
-import { dummyData } from '../../utils/helpers'
+import { sampleData } from '../../utils/helpers'
 
-export const loadDummyData = ({ formId }) => {
+export const sampleDataOverwrite = ( formId ) => {
   return {
-    type: LOAD_DUMMY_DATA,
-    payload: { formId, data: dummyData }
+    type: SAMPLE_DATA_OVERWRITE,
+    payload: { formId, data: sampleData }
+  }
+}
+
+export const sampleDataAppend = ( formId ) => {
+  return {
+    type: SAMPLE_DATA_APPEND,
+    payload: { formId, data: sampleData }
+  }
+}
+
+export const sampleDataDelete = ( formId ) => {
+  return {
+    type: SAMPLE_DATA_DELETE,
+    payload: { formId, data: sampleData }
   }
 }
 

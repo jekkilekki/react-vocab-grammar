@@ -1,21 +1,38 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { formFieldUpdate } from '../../stateManagement/actions'
+import { formFieldUpdate, sampleDataOverwrite, sampleDataAppend, sampleDataDelete } from '../../stateManagement/actions'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PreviewList from './PreviewList'
 import CardFront from './CardBack'
 import CardBack from './CardFront'
 
 const Panel = styled.div`
   background: rgba(169,186,201,0.5);
-  padding: 1rem;
+  padding: 1rem 1rem 1rem;
   width: 50%;
 `
 
 const CardContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  position: relative;
+`
+
+const DataButtons = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  opacity: 0.5;
+`
+
+const LoadButton = styled.small`
+  margin-left: 5px;
+  width: 15px;
+  text-align: center;
+  opacity: 0.5;
+  cursor: pointer;
 `
 
 // const Image = styled.img`
@@ -46,8 +63,23 @@ class PreviewPanel extends Component {
 
     return (
       <Panel className='preview-panel'>
+        <DataButtons>
+          <small>Sample Data: </small>
+          <LoadButton onClick={() => this.props.sampleDataOverwrite(formName)}>
+            <FontAwesomeIcon icon='history' />
+            {/* Overwrite */}
+          </LoadButton>
+          <LoadButton onClick={() => this.props.sampleDataAppend(formName)}>
+            <FontAwesomeIcon icon='plus' />
+            {/* Append */}
+          </LoadButton>
+          <LoadButton onClick={() => this.props.sampleDataDelete(formName)}>
+            <FontAwesomeIcon icon='trash-alt' />
+            {/* Delete */}
+          </LoadButton>
+        </DataButtons>
+
         <CardContainer>
-          
           <div>
             <PreviewTitle>New Card Front</PreviewTitle>
             <CardFront formName={formName} card={app[formName]} noTitle />
@@ -71,4 +103,4 @@ const mapStateToProps = ({ app }) => {
   return { app }
 }
 
-export default connect(mapStateToProps, { formFieldUpdate })(PreviewPanel)
+export default connect(mapStateToProps, { formFieldUpdate, sampleDataOverwrite, sampleDataAppend, sampleDataDelete })(PreviewPanel)

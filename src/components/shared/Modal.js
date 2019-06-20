@@ -57,8 +57,7 @@ class Modal extends Component {
   }
 
   deleteAll = () => {
-    console.log('Deleting!')
-    cardsDeleteAll({ formId: this.props.formName })
+    this.props.cardsDeleteAll({ formId: this.props.formName })
     this.props.closeModal()
   }
 
