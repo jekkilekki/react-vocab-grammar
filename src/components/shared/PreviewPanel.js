@@ -5,8 +5,8 @@ import { formFieldUpdate, sampleDataOverwrite, sampleDataAppend, sampleDataDelet
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PreviewList from './PreviewList'
-import CardFront from './CardBack'
-import CardBack from './CardFront'
+import CardBack from './CardBack'
+import CardFront from './CardFront'
 
 const Panel = styled.div`
   background: rgba(169,186,201,0.5);
@@ -24,15 +24,21 @@ const DataButtons = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  opacity: 0.5;
+  color: #a9bac9;
+  position: relative;
 `
 
 const LoadButton = styled.small`
   margin-left: 5px;
   width: 15px;
   text-align: center;
-  opacity: 0.5;
   cursor: pointer;
+  position: relative;
+`
+
+const Tooltip = styled.p`
+  opacity: 1;
+  top: -2rem;
 `
 
 // const Image = styled.img`
@@ -56,8 +62,13 @@ const PreviewTitle = styled.p`
 `
 
 class PreviewPanel extends Component {
+  state = {
+    tooltip: null
+  }
+
   render() {
     const { formName, app } = this.props
+    const { tooltip } = this.state
 
     if ( app[formName] === undefined ) return null
 
@@ -65,24 +76,42 @@ class PreviewPanel extends Component {
       <Panel className='preview-panel'>
         <DataButtons>
           <small>Sample Data: </small>
-          <LoadButton onClick={() => this.props.sampleDataOverwrite(formName)}>
+          <LoadButton onClick={() => this.props.sampleDataOverwrite(formName)}
+            onMouseEnter={() => this.setState({ tooltip: 'overwrite' })}
+            onMouseLeave={() => this.setState({ tooltip: null })}
+          >
             <FontAwesomeIcon icon='history' />
             {/* Overwrite */}
+            { tooltip === 'overwrite' &&
+              <Tooltip className='tooltip'>Overwrite</Tooltip>
+            }
           </LoadButton>
-          <LoadButton onClick={() => this.props.sampleDataAppend(formName)}>
+          <LoadButton onClick={() => this.props.sampleDataAppend(formName)}
+            onMouseEnter={() => this.setState({ tooltip: 'append' })}
+            onMouseLeave={() => this.setState({ tooltip: null })}
+          >
             <FontAwesomeIcon icon='plus' />
             {/* Append */}
+            { tooltip === 'append' &&
+              <Tooltip className='tooltip'>Append</Tooltip>
+            }
           </LoadButton>
-          <LoadButton onClick={() => this.props.sampleDataDelete(formName)}>
+          <LoadButton onClick={() => this.props.sampleDataDelete(formName)}
+            onMouseEnter={() => this.setState({ tooltip: 'delete' })}
+            onMouseLeave={() => this.setState({ tooltip: null })}
+          >
             <FontAwesomeIcon icon='trash-alt' />
             {/* Delete */}
+            { tooltip === 'delete' && 
+              <Tooltip className='tooltip'>Delete</Tooltip>
+            }
           </LoadButton>
         </DataButtons>
 
         <CardContainer>
           <div>
             <PreviewTitle>New Card Front</PreviewTitle>
-            <CardFront formName={formName} card={app[formName]} noTitle />
+            <CardFront formName={formName} card={app[formName]} />
           </div>
         
           <div>

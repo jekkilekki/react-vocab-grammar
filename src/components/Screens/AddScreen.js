@@ -45,7 +45,7 @@ class GenericScreen extends Component {
         { loggedIn && 
           <Container className='add-item-container'>  
             {this.renderForm()}
-            <PreviewPanel formName={this.props.pageTitle} editCard={this.editCard} />
+            <PreviewPanel formName={this.props.pageTitle} />
           </Container>
         }
       </div>

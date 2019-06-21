@@ -137,7 +137,7 @@ export const grammarPartsOfSpeech = [
   { id: 'adj', name: 'Adjective', abrv: 'A' }
 ]
 
-export function getPartOfSpeech( type, data ) {
+export function getPartOfSpeech( type, data = null ) {
   if ( data !== null ) {
     if ( type === 'radio' ) {
       return vocabPartsOfSpeech.find(item => (
@@ -149,6 +149,6 @@ export function getPartOfSpeech( type, data ) {
           i.id === item.split('-')[0]
         )).abrv
       ))
-    }
-  }
+    } else return null
+  } else return null
 }

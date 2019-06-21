@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { cardDelete, cardsDeleteAll, formFieldUpdate } from '../../stateManagement/actions'
-import SingleScreen from '../Screens/SingleScreen'
+import EditScreen from '../Screens/EditScreen'
  
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -24,7 +24,7 @@ const Overlay = styled.div`
 
 const ModalContainer = styled.div`
   transition: all 0.5s;
-  width: 400px;
+  min-width: 400px;
   position: relative;
   background: white;
   border-radius: 20px;
@@ -66,7 +66,7 @@ class Modal extends Component {
     return (
       <div>
         <ModalTitle>Editing {data.korean}</ModalTitle>
-        <SingleScreen data={data} />
+        <EditScreen data={data} />
       </div>
     )
   }

@@ -73,11 +73,11 @@ const ListIcons = styled.div`
   position: absolute;
   right: 0;
   background: rgb(169,186,201);
-  background: linear-gradient(90deg, rgba(212,220,228,0.5) 0%, rgba(212,220,228,1) 50%);
+  background: linear-gradient(90deg, rgba(212,220,228,0.1) 0%, rgba(212,220,228,1) 50%);
   z-index: 2;
   height: 67px;
   line-height: 67px;
-  width: 40px;
+  width: 60px;
   text-align: right;
 `
 
@@ -165,7 +165,7 @@ class PreviewList extends Component {
           {this.props.cards.map((card, i) => {
             if ( i * this.state.pageNum < this.state.pageNum * this.state.itemsPerPage) 
               return (
-                <ListItem key={card.id}>
+                <ListItem key={card.id || i} className={this.props.app.editing === card.id ? 'editing' : '' }>
 
                   <ListNumber>{i+1})</ListNumber>
 
@@ -182,11 +182,11 @@ class PreviewList extends Component {
                   </ListText>
 
                   <ListIcons>
-                    {/* <ListIcon>
-                      <FontAwesomeIcon className="edit-item" icon="pencil-alt" onClick={() => this.props.cardEdit({ formId: this.props.form, cardId: card.id })} />
-                    </ListIcon> */}
                     <ListIcon>
-                      <FontAwesomeIcon className="delete-item" icon="trash-alt" onClick={() => this.openModal('delete', card)} />
+                      <FontAwesomeIcon className="edit-item" icon="pencil-alt" color={'#a9bac9'} onClick={() => this.props.cardEdit({ formId: this.props.formName, cardId: card.id })} />
+                    </ListIcon>
+                    <ListIcon>
+                      <FontAwesomeIcon className="delete-item" icon="trash-alt" color={'#a9bac9'} onClick={() => this.openModal('delete', card)} />
                     </ListIcon>
                   </ListIcons>
                 </ListItem>

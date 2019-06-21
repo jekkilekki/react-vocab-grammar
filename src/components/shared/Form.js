@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
-import { createForm, formError, formFieldUpdate, formSave } from '../../stateManagement/actions'
+import { createForm, formError, formFieldUpdate, formSave, formUpdate } from '../../stateManagement/actions'
 import { connect } from 'react-redux'
 
 import FormAddFields from './FormAddFields'
@@ -44,7 +44,7 @@ class Form extends Component {
   formSubmit = (e) => {
     e.preventDefault()
 
-    const { formSave, app, formName, formFieldUpdate, formError } = this.props
+    const { formSave, formUpdate, app, formName, formFieldUpdate, formError } = this.props
     const id = generateID()
 
     // Clone the Form object held in Redux state so we can manipulate it a bit
@@ -53,7 +53,13 @@ class Form extends Component {
     delete card.cards
     card.id = id
 
-    if ((card.korean !== '' && card.korean !== undefined) || 
+    if ( app.editing !== undefined && app.editing !== null ) {
+      formUpdate({
+        formId: formName,
+        cardId: app.editing,
+        card
+      })
+    } else if ((card.korean !== '' && card.korean !== undefined) || 
         (card.english !== '' && card.english !== undefined)) {
       formSave({ 
         formId: formName, 
@@ -204,7 +210,7 @@ class Form extends Component {
         }
 
         <input className="btn-big" type="submit" 
-          value={`Add ${formName}`} 
+          value={`Save`} 
           disabled={!app[formName].korean || !app[formName].english}
         />
       </FormContainer>
@@ -216,4 +222,4 @@ const mapStateToProps = ({ app }) => {
   return { app }
 }
 
-export default connect(mapStateToProps, { createForm, formError, formFieldUpdate, formSave })(Form)
+export default connect(mapStateToProps, { createForm, formError, formFieldUpdate, formSave, formUpdate })(Form)

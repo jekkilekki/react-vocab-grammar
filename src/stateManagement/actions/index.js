@@ -15,6 +15,7 @@ export const SEARCH_FIELD_UPDATE = 'search_field_update'
 export const SEARCH_QUERY = 'search_query'
 
 export const FORM_SAVE = 'form_save'
+export const FORM_UPDATE = 'form_update'
 export const FORM_SAVE_COMPLETE = 'form_save_complete'
 export const FORM_FIELD_UPDATE = 'form_field_update'
 export const FORM_ERROR = 'form_error'

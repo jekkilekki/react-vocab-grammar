@@ -79,8 +79,8 @@ class FormAddFields extends Component {
 
     return (
       <ul className={niceTitle + "-wrapper"}>
-      { this.state.data.map(item => (
-        <li key={item.key} className="field-wrapper"> 
+      { this.state.data.map((item, i) => (
+        <li key={item.key || i} className="field-wrapper"> 
           {/* <p>{item.key}</p> */}
           <input 
             type="text" 

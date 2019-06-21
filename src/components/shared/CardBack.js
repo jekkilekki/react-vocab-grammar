@@ -44,15 +44,11 @@ class CardBack extends Component {
 
   render() {
     const { koreanLetter, imageUrl, radioSelected, checkboxesChecked } = this.props.card
-    let radio = '', checked = []
-    if ( radioSelected !== undefined ) {
-      radio = getPartOfSpeech('radio', radioSelected)
-    }
-    if ( checkboxesChecked !== [] && checkboxesChecked !== undefined ) {
-      console.log(checkboxesChecked)
-      checked = getPartOfSpeech('checkbox', checkboxesChecked)
-      console.log(checked)
-    }
+    let radio = getPartOfSpeech('radio', radioSelected), 
+        checked = getPartOfSpeech('checkbox', checkboxesChecked)
+
+    console.log( 'radio', radio )
+    console.log( 'checked', checked )
 
     return (
       <Card>
@@ -69,8 +65,8 @@ class CardBack extends Component {
             <Hangul>{koreanLetter}</Hangul>
           </Fragment>
         }
-        {radioSelected !== undefined && <Label className='btn alt'>{radio}</Label>}
-        {checkboxesChecked !== undefined &&
+        {radio !== null && <Label className='btn alt'>{radio}</Label>}
+        {checked !== null && checked.length > 1 &&
           <Label className='btn alt'>
             {checked.map((item, i, arr) => {
               if ( i !== arr.length - 1 ) {

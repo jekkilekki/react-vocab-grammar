@@ -1,5 +1,5 @@
 import { 
-  SEARCH_QUERY, FORM_FIELD_UPDATE, FORM_SAVE, FORM_SAVE_COMPLETE,
+  SEARCH_QUERY, FORM_FIELD_UPDATE, FORM_SAVE, FORM_UPDATE, FORM_SAVE_COMPLETE,
   CARD_DELETE, CARD_EDIT, FORM_ERROR, CARDS_DELETE_ALL, 
   SAMPLE_DATA_OVERWRITE, SAMPLE_DATA_APPEND, SAMPLE_DATA_DELETE,
   CREATE_FORM,
@@ -63,6 +63,16 @@ export const formSave = ({ formId, card }) => {
     await dispatch({
       type: FORM_SAVE,
       payload: { formId, card }
+    })
+    dispatch({ type: FORM_SAVE_COMPLETE })
+  }
+}
+
+export const formUpdate = ({ formId, cardId, card }) => {
+  return async (dispatch) => {
+    await dispatch({
+      type: FORM_UPDATE,
+      payload: { formId, cardId, card }
     })
     dispatch({ type: FORM_SAVE_COMPLETE })
   }
