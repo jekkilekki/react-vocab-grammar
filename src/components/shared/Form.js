@@ -59,14 +59,16 @@ class Form extends Component {
         cardId: app.editing,
         card
       })
+    } else if ( card.imageUrl && ! card.imageUrl.match(/[^/]+(jpg|png|gif)$/) ) {
+      formError( 'Image must be a .jpg or .png and end with that file extension.' )
     } else if ((card.korean !== '' && card.korean !== undefined) || 
         (card.english !== '' && card.english !== undefined)) {
+      formFieldUpdate({ formId: formName, prop: 'sentences', value: [] })
+      formFieldUpdate({ formId: formName, prop: 'definitions', value: [] })
       formSave({ 
         formId: formName, 
         card
       })
-      formFieldUpdate({ formId: formName, prop: 'sentences', value: [] })
-      formFieldUpdate({ formId: formName, prop: 'definitions', value: [] })
     } else {
       formError('Saving a card requires Korean and English text.')
     }

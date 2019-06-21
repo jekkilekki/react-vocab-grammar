@@ -102,7 +102,7 @@ export default ( state = INITIAL_STATE, action ) => {
         }
       }
     case FORM_SAVE_COMPLETE:
-      return { ...state, saving: false }
+      return { ...state, editing: null, saving: false }
     case CARD_DELETE:
       return {
         ...state,

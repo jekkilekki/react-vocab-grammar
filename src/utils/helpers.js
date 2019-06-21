@@ -152,3 +152,20 @@ export function getPartOfSpeech( type, data = null ) {
     } else return null
   } else return null
 }
+
+/**
+ * Helper method for creating a range of numbers
+ * numRange(1, 5) => [1, 2, 3, 4, 5]
+ * @ref https://scotch.io/tutorials/build-custom-pagination-with-react
+ */
+export function numRange( from, to, step = 1 ) {
+  let i = from
+  const range = []
+
+  while ( i <= to ) {
+    range.push(i)
+    i += step
+  }
+
+  return range
+}

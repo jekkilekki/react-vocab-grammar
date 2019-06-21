@@ -7,6 +7,7 @@ import { cardEdit } from '../../stateManagement/actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Modal from './Modal'
 import Pagination from './Pagination'
+import PaginationNew from './PaginationNew'
 import { generateShortId } from '../../utils/helpers';
 
 const ListHeader = styled.div`
@@ -50,6 +51,7 @@ const ListNumber = styled.p`
 const ListImage = styled.div`
   height: 50px;
   width: 50px;
+  background-color: white;
   background-position: center;
   background-size: cover;
   margin-right: 1rem;
@@ -93,11 +95,16 @@ class PreviewList extends Component {
     showModal: false, 
     modalType: null,
     modalContent: {},
-    pageNum: 2,
-    numPages: null, 
+    allItems: this.props.cards || [],
+    visibleItems: [],
+    currentPage: 2,
+    totalPages: null, 
     itemsPerPage: 5,
-    visibleItems: []
   }
+
+  // componentDidMount() {
+  //   this.setState({ allItems: this.props.cards })
+  // }
 
   openModal = async ( type, card = '' ) => {
     await this.setState({
@@ -115,15 +122,27 @@ class PreviewList extends Component {
     })
   }
 
-  changePage = (offset) => this.setState( prevState => ({
-    pageNum: prevState.pageNum + offset
-  }))
+  onPageChanged = (data) => {
+    const { allItems } = this.state
+    const { currentPage, totalPages, pageLimit } = data
+    const offset = (currentPage - 1) * pageLimit
+    const visibleItems = allItems.slice(offset, offset + pageLimit)
 
-  prevPage = () => this.changePage(-1)
+    this.setState({ currentPage, visibleItems, totalPages })
+  }
 
-  nextPage = () => this.changePage(1)
+  // changePage = (offset) => this.setState( prevState => ({
+  //   pageNum: prevState.pageNum + offset
+  // }))
+
+  // prevPage = () => this.changePage(-1)
+
+  // nextPage = () => this.changePage(1)
 
   render() {
+    const { allItems, visibleItems, currentPage, totalPages } = this.state 
+    const totalItems = allItems.length 
+
     return (
       <Fragment>
         {this.props.cards.length > 0 &&
@@ -162,46 +181,50 @@ class PreviewList extends Component {
           </ListHeader>
         }
         <List>
-          {this.props.cards.map((card, i) => {
-            if ( i * this.state.pageNum < this.state.pageNum * this.state.itemsPerPage) 
-              return (
-                <ListItem key={card.id || i} className={this.props.app.editing === card.id ? 'editing' : '' }>
+          {visibleItems.map((card, i) => {
+            return (
+              <ListItem key={card.id || i} className={this.props.app.editing === card.id ? 'editing' : '' }>
 
-                  <ListNumber>{i+1})</ListNumber>
+                <ListNumber>{i+1})</ListNumber>
 
-                  {card.imageUrl && 
-                    <ListImage style={{backgroundImage: `url(${card.imageUrl})`}}
-                      onClick={() => this.openModal('edit', card)}
-                    >
-                    </ListImage>
-                  }
+                {card.imageUrl && 
+                  <ListImage style={{backgroundImage: `url(${card.imageUrl})`}}
+                    onClick={() => this.props.cardEdit({ formId: this.props.formName, cardId: card.id })}
+                  >
+                  </ListImage>
+                }
 
-                  <ListText onClick={() => this.openModal('edit', card)}>
-                    <strong>{card.korean}</strong>
-                    <ListDefinition>{card.english}</ListDefinition>
-                  </ListText>
+                <ListText onClick={() => this.props.cardEdit({ formId: this.props.formName, cardId: card.id })}>
+                  <strong>{card.korean}</strong>
+                  <ListDefinition>{card.english}</ListDefinition>
+                </ListText>
 
-                  <ListIcons>
-                    <ListIcon>
-                      <FontAwesomeIcon className="edit-item" icon="pencil-alt" color={'#a9bac9'} onClick={() => this.props.cardEdit({ formId: this.props.formName, cardId: card.id })} />
-                    </ListIcon>
-                    <ListIcon>
-                      <FontAwesomeIcon className="delete-item" icon="trash-alt" color={'#a9bac9'} onClick={() => this.openModal('delete', card)} />
-                    </ListIcon>
-                  </ListIcons>
-                </ListItem>
-              )
-            return null
+                <ListIcons>
+                  <ListIcon>
+                    <FontAwesomeIcon className="edit-item" icon="pencil-alt" color={'#a9bac9'} onClick={() => this.props.cardEdit({ formId: this.props.formName, cardId: card.id })} />
+                  </ListIcon>
+                  <ListIcon>
+                    <FontAwesomeIcon className="delete-item" icon="trash-alt" color={'#a9bac9'} onClick={() => this.openModal('delete', card)} />
+                  </ListIcon>
+                </ListIcons>
+              </ListItem>
+            )
           })}
         </List>
         {this.props.cards.length > 5 &&
-          <Pagination 
-            pageNum={this.state.pageNum}
-            numPages={this.props.cards.length / this.state.itemsPerPage}
-            itemsPerPage={this.state.itemsPerPage}
-            prevPage={this.prevPage}
-            nextPage={this.nextPage}
-          />
+          // <Pagination 
+          //   pageNum={this.state.pageNum}
+          //   numPages={this.props.cards.length / this.state.itemsPerPage}
+          //   itemsPerPage={this.state.itemsPerPage}
+          //   prevPage={this.prevPage}
+          //   nextPage={this.nextPage}
+          // />
+          <div className='pagination-container'>
+            { currentPage &&
+              <small>Page <span>{currentPage}</span> / {totalPages}</small>
+            }
+            <PaginationNew totalItems={this.props.cards.length} pageLimit={5} pageNeighbors={1} onPageChanged={this.onPageChanged} />
+          </div>
         }
         <Modal formName={this.props.formName} show={this.state.showModal} type={this.state.modalType} data={this.state.modalContent} closeModal={this.closeModal} />
       </Fragment>
