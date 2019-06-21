@@ -10,8 +10,9 @@ import CardFront from './CardFront'
 
 const Panel = styled.div`
   background: rgba(169,186,201,0.5);
-  padding: 1rem 1rem 1rem;
+  padding: 1rem 1.5rem 1rem;
   width: 50%;
+  border-radius: 10px;
 `
 
 const CardContainer = styled.div`
