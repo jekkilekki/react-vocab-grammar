@@ -20,7 +20,7 @@ class Flashcards extends Component {
               <View key={i} style={styles.cardRow}>
                 { row.map(card => (
                   <View key={card.id} style={styles.card}>
-                    <Text style={styles.title}>{card.korean} 안녕</Text>
+                    <Text style={styles.title}>{card.korean}</Text>
                     <Text style={styles.author}>{card.english}</Text>
                   </View>
                 ))}
@@ -66,6 +66,9 @@ Font.register({
   src: 'assets/fonts/NotoSansKR-Regular.ttf'
 });
 
+Font.register({ family: "Nanum Gothic", src: "https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.ttf", });
+
+
 const styles = StyleSheet.create({
   body: {
     paddingTop: 35,
@@ -100,7 +103,7 @@ const styles = StyleSheet.create({
     marginTop: 24,
     marginBottom: 12,
     textAlign: 'center',
-    // fontFamily: 'NotoSansKR', 
+    fontFamily: 'Nanum Gothic', 
   },
   author: {
     fontSize: 12,

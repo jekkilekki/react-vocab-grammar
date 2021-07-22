@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 import FormAddFields from '../shared/FormAddFields'
 import FormAddImage from '../shared/FormAddImage'
+import FormPasteImage from '../shared/FormPasteImage'
 import FormCheckBoxes from '../shared/FormCheckBoxes'
 import FormRadioBtns from '../shared/FormRadioBtns'
 import FormDropdown from '../shared/FormDropdown'
@@ -108,30 +109,17 @@ class SingleScreen extends Component {
       <FormContainer id={formName} onSubmit={this.formSubmit}>
         {app.error !== '' && <Error>{app.error}</Error>}
 
-{/* <<<<<<< HEAD
-        {levels && 
-          levels === 'vocab' && 
-            <FormDropdown data={levelsVocab} 
-              value={app[formName].level || 'none'}
-              onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'level', value: e.target.value }) }
-            />
-        }
-        {levels && 
-          levels === 'grammar' && 
-            <FormDropdown data={levelsGrammar} 
-              value={app[formName].level || 'none'}
-              onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'level', value: e.target.value }) }
-            />
-        }
-======= */}
         {levels && this.renderLevels() }
 
         {addImage && 
-          <FormAddImage
-            value={app[formName].imageUrl || ''} 
-            placeholder="Image URL" 
-            onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'imageUrl', value: e.target.value }) }
-          />
+          <Fragment>
+            <FormAddImage
+              value={app[formName].imageUrl || ''} 
+              placeholder="Image URL" 
+              onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'imageUrl', value: e.target.value }) }
+            />
+            <FormPasteImage />
+          </Fragment>
         }
 
         {formName.toLowerCase() === 'hangul' && 
@@ -187,7 +175,7 @@ class SingleScreen extends Component {
           />
         }
 
-        {formName.toLowerCase() !== 'phrases' && formName.toLowerCase() !== 'hangul' &&
+        {formName.toLowerCase() !== 'phrases' && formName.toLowerCase() !== 'hangul' && formName.toLowerCase() !== 'vocabulary' &&
           <Fragment>
             <label htmlFor="definition" className="float-label">Definition</label>
             <FormAddFields title="definition(s)" 

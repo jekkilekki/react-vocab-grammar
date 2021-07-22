@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 import FormAddFields from './FormAddFields'
 import FormAddImage from './FormAddImage'
+import FormPasteImage from './FormPasteImage'
 import FormCheckBoxes from './FormCheckBoxes'
 import FormRadioBtns from './FormRadioBtns'
 import FormDropdown from './FormDropdown'
@@ -122,11 +123,14 @@ class Form extends Component {
         {levels && this.renderLevels() }
 
         {addImage && 
-          <FormAddImage
-            value={app[formName].imageUrl || ''} 
-            placeholder={formName.toLowerCase() === 'hangul' ? 'Stroke order Image URL' : 'Image URL'} 
-            onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'imageUrl', value: e.target.value }) }
-          />
+          <>
+            <FormAddImage
+              value={app[formName].imageUrl || ''} 
+              placeholder={formName.toLowerCase() === 'hangul' ? 'Stroke order Image URL' : 'Image URL'} 
+              onChange={(e) => this.props.formFieldUpdate({ formId: formName, prop: 'imageUrl', value: e.target.value }) }
+            />
+            <FormPasteImage />
+          </>
         }
 
         {formName.toLowerCase() === 'hangul' && 
@@ -182,7 +186,7 @@ class Form extends Component {
           />
         }
 
-        {formName.toLowerCase() !== 'phrases' && formName.toLowerCase() !== 'hangul' &&
+        {formName.toLowerCase() !== 'phrases' && formName.toLowerCase() !== 'hangul' && formName.toLowerCase() !== 'vocabulary' &&
           <Fragment>
             <label htmlFor="definition" className="float-label">Definition</label>
             <FormAddFields title="definition(s)" 
