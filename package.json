@@ -13,7 +13,7 @@
     "@react-pdf/renderer": "^1.6.2",
     "auth0-js": "^9.10.4",
     "i": "^0.3.6",
-    "node-sass": "^4.14.0",
+    "node-sass": "^7.0.0",
     "npm": "^6.9.0",
     "prop-types": "^15.7.2",
     "react": "^16.7.0",
